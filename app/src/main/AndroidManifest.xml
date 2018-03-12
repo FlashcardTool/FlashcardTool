@@ -17,7 +17,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".QuizModeQuestion" />
-        <activity android:name=".QuizModeAnswer"></activity>
+        <activity android:name=".QuizModeAnswer" />
+        <activity android:name=".QuizModeAnswerIncorrect" />
+        <activity android:name=".DeckSelectSubMenu" />
+        <activity android:name=".DeckSelectDelete" />
+        <activity android:name=".DeckSelectNewDeck" />
+        <activity android:name=".StudyModeTop" />
+        <activity android:name=".EditMode" />
+        <activity android:name=".StudyModeBottom"></activity>
     </application>
 
 </manifest>

@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">FlashcardTool</string>
+    <string-array name="Decks_Temp">
+        <item>Deck 1</item>
+        <item>Deck 2</item>
+        <item>Deck 3</item>
+        <item>Deck 4</item>
+        <item>Deck 5</item>
+        <item>Deck 6</item>
+        <item>Deck 7</item>
+        <item>Deck 8</item>
+        <item>Deck 9</item>
+        <item>Deck 10</item>
+    </string-array>
+
+    <string-array name="Sub_Menu">
+        <item>Study</item>
+        <item>Quiz</item>
+        <item>Edit</item>
+        <item>Export</item>
+        <item>Delete</item>
+    </string-array>
+
 </resources>
