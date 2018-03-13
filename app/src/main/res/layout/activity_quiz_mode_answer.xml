@@ -38,7 +38,7 @@
             android:layout_height="410dp">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/buttonNext"
                 android:layout_width="205dp"
                 android:layout_height="205dp"
                 android:layout_marginBottom="102dp"

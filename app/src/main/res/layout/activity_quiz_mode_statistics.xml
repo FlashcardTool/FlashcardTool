@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tool.flashcard.flashcardtool.QuizModeAnswerIncorrect">
-
+    tools:context="com.tool.flashcard.flashcardtool.QuizModeStatistics">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -81,24 +80,30 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
             <Button
-                android:id="@+id/button1"
-                android:layout_width="wrap_content"
+                android:id="@+id/buttonDone"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="161dp"
+                android:layout_marginStart="161dp"
                 android:text="Done"
-                app:layout_constraintTop_toBottomOf="@+id/textView6"
-                tools:layout_editor_absoluteX="161dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/buttonAgain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="56dp"
+                android:layout_marginEnd="157dp"
+                android:layout_marginStart="157dp"
                 android:layout_marginTop="8dp"
                 android:text="Try Again"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6"
-                app:layout_constraintVertical_bias="1.0"
-                tools:layout_editor_absoluteX="157dp" />
+                app:layout_constraintVertical_bias="1.0" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -111,6 +116,5 @@
             android:textColor="#000000"
             android:textSize="40sp" />
     </LinearLayout>
-
 
 </android.support.constraint.ConstraintLayout>

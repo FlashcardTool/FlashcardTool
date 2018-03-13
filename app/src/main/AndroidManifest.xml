@@ -24,7 +24,8 @@
         <activity android:name=".DeckSelectNewDeck" />
         <activity android:name=".StudyModeTop" />
         <activity android:name=".EditMode" />
-        <activity android:name=".StudyModeBottom"></activity>
+        <activity android:name=".StudyModeBottom" />
+        <activity android:name=".QuizModeStatistics"></activity>
     </application>
 
 </manifest>
