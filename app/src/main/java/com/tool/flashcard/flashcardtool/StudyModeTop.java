@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class StudyModeTop extends AppCompatActivity {
 
@@ -23,5 +24,7 @@ public class StudyModeTop extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ((TextView)findViewById(R.id.textView2)).setText(DeckSelect.Manager.GetCurrentCardFront());
     }
 }

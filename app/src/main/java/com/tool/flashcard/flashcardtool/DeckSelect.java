@@ -10,9 +10,12 @@ import android.support.design.widget.FloatingActionButton;
 
 public class DeckSelect extends AppCompatActivity
 {
+    public static FlashcardManager Manager;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        Manager = new FlashcardManager();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deck_select);
 
