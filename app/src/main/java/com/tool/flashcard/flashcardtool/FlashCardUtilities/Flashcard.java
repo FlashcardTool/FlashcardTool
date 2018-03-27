@@ -1,4 +1,4 @@
-package com.tool.flashcard.flashcardtool;
+package com.tool.flashcard.flashcardtool.FlashCardUtilities;
 
 /**
  * Created by JBuckley15

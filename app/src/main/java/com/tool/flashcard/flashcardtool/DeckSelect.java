@@ -8,13 +8,26 @@ import android.widget.AdapterView;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 
+import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class DeckSelect extends AppCompatActivity
 {
-    public static FlashcardManager Manager;
+    public static List<Deck> Manager;
+    public static int        CurrentDeckIndex = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        Manager = new FlashcardManager();
+        Manager = new ArrayList<>();
+        Deck deck = new Deck("Test Deck");
+        Manager.add(deck);
+
+        for(int ind = 0; ind < 45; ind++)
+        {
+            deck.CreateNewCard("Front of card " + Integer.toString(ind), "Back of card " + Integer.toString(ind));
+        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deck_select);

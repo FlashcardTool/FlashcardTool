@@ -24,6 +24,6 @@ public class StudyModeBottom extends AppCompatActivity {
             }
         });
 
-        ((TextView) findViewById(R.id.textView2)).setText(DeckSelect.Manager.GetCurrentCardBack());
+        //((TextView) findViewById(R.id.textView2)).setText(DeckSelect.Manager.GetCurrentCardBack());
     }
 }
