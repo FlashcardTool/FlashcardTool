@@ -1,6 +1,8 @@
 package com.tool.flashcard.flashcardtool;
 
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -9,6 +11,7 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
+import com.tool.flashcard.flashcardtool.FlashCardUtilities.DeckListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +35,7 @@ public class DeckSelect extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deck_select);
 
-        ListView list = findViewById(R.id.mobile_list);
+        /*ListView list = findViewById(R.id.mobile_list);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id)
@@ -40,7 +43,7 @@ public class DeckSelect extends AppCompatActivity
                 Intent intent = new Intent(DeckSelect.this, DeckSelectSubMenu.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         FloatingActionButton fab = findViewById(R.id.NewDeckButton);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -52,5 +55,9 @@ public class DeckSelect extends AppCompatActivity
             }
         });
 
+
+        RecyclerView deck_list = (RecyclerView) findViewById(R.id.DeckList);
+        deck_list.setLayoutManager(new LinearLayoutManager(this));
+        deck_list.setAdapter(new DeckListAdapter());
     }
 }
