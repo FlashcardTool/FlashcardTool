@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
 
-public class StudyModeTop extends Activity{
+public class StudyMode extends Activity{
 
     private static final float MIN_DISTANCE = 500.0f;
 
@@ -26,7 +26,7 @@ public class StudyModeTop extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_study_mode_top);
+        setContentView(R.layout.activity_study_mode);
 
         ImageButton button = findViewById(R.id.imageButtonFlip);
         button.setOnClickListener(new View.OnClickListener() {

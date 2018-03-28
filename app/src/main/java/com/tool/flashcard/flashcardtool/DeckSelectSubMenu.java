@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListView;
 
 public class DeckSelectSubMenu extends AppCompatActivity
 {
@@ -22,7 +20,7 @@ public class DeckSelectSubMenu extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(DeckSelectSubMenu.this, StudyModeTop.class);
+                Intent intent = new Intent(DeckSelectSubMenu.this, StudyMode.class);
                 startActivity(intent);
             }
         });
