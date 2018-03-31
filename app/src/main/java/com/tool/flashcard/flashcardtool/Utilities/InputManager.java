@@ -1,14 +1,14 @@
 package com.tool.flashcard.flashcardtool.Utilities;
 
-import android.app.Activity;
 import android.support.v4.view.MotionEventCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 
 /**
  * Created by j on 3/31/18.
  */
 
-public class InputManager extends Activity
+public class InputManager extends AppCompatActivity
 {
     private static final float  MIN_DISTANCE        = 300.0f;
     private static final float  MIN_DISTANCE_TOUCH  = 20.0f;

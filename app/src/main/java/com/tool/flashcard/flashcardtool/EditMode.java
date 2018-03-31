@@ -9,8 +9,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
+import com.tool.flashcard.flashcardtool.Utilities.InputManager;
 
-public class EditMode extends AppCompatActivity {
+public class EditMode extends InputManager {
 
      private Deck m_Deck;
 
@@ -66,8 +67,7 @@ public class EditMode extends AppCompatActivity {
             public void onClick(View v) {
                 m_Deck.CreateNewCard("Card Front", "Card Back");
                 m_Deck.NextCard();
-                m_Top.setText(m_Deck.GetCurrentCardFront());
-                m_Bottom.setText(m_Deck.GetCurrentCardBack());
+                DisplayCard();
             }
         });
 
@@ -77,8 +77,7 @@ public class EditMode extends AppCompatActivity {
             public void onClick(View v) {
                 m_Deck.DeleteFlashcard();
                 m_Deck.PreviousCard();
-                m_Top.setText(m_Deck.GetCurrentCardFront());
-                m_Bottom.setText(m_Deck.GetCurrentCardBack());
+                DisplayCard();
             }
         });
 
@@ -87,8 +86,7 @@ public class EditMode extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 m_Deck.PreviousCard();
-                m_Top.setText(m_Deck.GetCurrentCardFront());
-                m_Bottom.setText(m_Deck.GetCurrentCardBack());
+                DisplayCard();
             }
         });
 
@@ -97,8 +95,7 @@ public class EditMode extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 m_Deck.NextCard();
-                m_Top.setText(m_Deck.GetCurrentCardFront());
-                m_Bottom.setText(m_Deck.GetCurrentCardBack());
+                DisplayCard();
             }
         });
 
@@ -108,8 +105,7 @@ public class EditMode extends AppCompatActivity {
     {
         super.onResume();
 
-        m_Top.setText(m_Deck.GetCurrentCardFront());
-        m_Bottom.setText(m_Deck.GetCurrentCardBack());
+        DisplayCard();
     }
 
     protected void onPause()
@@ -117,5 +113,23 @@ public class EditMode extends AppCompatActivity {
         super.onPause();
 
         m_Deck.Reset();
+    }
+
+    private void DisplayCard()
+    {
+        m_Top.setText(m_Deck.GetCurrentCardFront());
+        m_Bottom.setText(m_Deck.GetCurrentCardBack());
+    }
+
+    final public void OnSwipeLeft(float _position)
+    {
+        m_Deck.NextCard();
+        DisplayCard();
+    }
+
+    final public void OnSwipeRight(float _position)
+    {
+        m_Deck.PreviousCard();
+        DisplayCard();
     }
 }
