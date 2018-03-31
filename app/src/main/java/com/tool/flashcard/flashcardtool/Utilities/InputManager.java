@@ -10,7 +10,8 @@ import android.view.MotionEvent;
 
 public class InputManager extends Activity
 {
-    private static final float  MIN_DISTANCE = 300.0f;
+    private static final float  MIN_DISTANCE        = 300.0f;
+    private static final float  MIN_DISTANCE_TOUCH  = 20.0f;
 
     private float               m_StartTouhPositionY;
     private float               m_EndTouchPositionY;
@@ -49,7 +50,7 @@ public class InputManager extends Activity
                     else
                         OnSwipeLeft(m_EndTouchPositionX);
                 }
-                else if((Math.abs(m_EndTouchPositionX - m_StartTouhPositionX) < MIN_DISTANCE) && (Math.abs(m_EndTouchPositionY - m_StartTouhPositionY) < MIN_DISTANCE))
+                else if((Math.abs(m_EndTouchPositionX - m_StartTouhPositionX) < MIN_DISTANCE_TOUCH) && (Math.abs(m_EndTouchPositionY - m_StartTouhPositionY) < MIN_DISTANCE_TOUCH))
                 {
                     OnTouch(m_EndTouchPositionX, m_EndTouchPositionY);
                 }

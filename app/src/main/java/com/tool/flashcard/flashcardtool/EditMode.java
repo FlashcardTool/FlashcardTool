@@ -12,16 +12,21 @@ import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
 
 public class EditMode extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+     private Deck m_Deck;
 
-        final Deck deck = DeckSelect.Manager.get(DeckSelect.CurrentDeckIndex);
+     private EditText m_Top;
+     private EditText m_Bottom;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        m_Deck = DeckSelect.Manager.get(DeckSelect.CurrentDeckIndex);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_mode);
 
-        final EditText top = findViewById(R.id.editModeTopEditText);
-        top.addTextChangedListener(new TextWatcher() {
+        m_Top = findViewById(R.id.editModeTopEditText);
+        m_Top.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -29,7 +34,7 @@ public class EditMode extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                deck.UpdateCardValues(s.toString(), deck.GetCurrentCardBack());
+                m_Deck.UpdateCardValues(s.toString(), m_Deck.GetCurrentCardBack());
             }
 
             @Override
@@ -38,8 +43,8 @@ public class EditMode extends AppCompatActivity {
             }
         });
 
-        final EditText bottom = findViewById(R.id.editModeBottomEditText);
-        bottom.addTextChangedListener(new TextWatcher() {
+        m_Bottom = findViewById(R.id.editModeBottomEditText);
+        m_Bottom.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -47,12 +52,11 @@ public class EditMode extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                deck.UpdateCardValues(deck.GetCurrentCardFront(), s.toString());
+                m_Deck.UpdateCardValues(m_Deck.GetCurrentCardFront(), s.toString());
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
 
@@ -60,10 +64,10 @@ public class EditMode extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deck.CreateNewCard("test", "back");
-                deck.NextCard();
-                top.setText(deck.GetCurrentCardFront());
-                bottom.setText(deck.GetCurrentCardBack());
+                m_Deck.CreateNewCard("Card Front", "Card Back");
+                m_Deck.NextCard();
+                m_Top.setText(m_Deck.GetCurrentCardFront());
+                m_Bottom.setText(m_Deck.GetCurrentCardBack());
             }
         });
 
@@ -71,10 +75,10 @@ public class EditMode extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deck.DeleteFlashcard();
-                deck.PreviousCard();
-                top.setText(deck.GetCurrentCardFront());
-                bottom.setText(deck.GetCurrentCardBack());
+                m_Deck.DeleteFlashcard();
+                m_Deck.PreviousCard();
+                m_Top.setText(m_Deck.GetCurrentCardFront());
+                m_Bottom.setText(m_Deck.GetCurrentCardBack());
             }
         });
 
@@ -82,9 +86,9 @@ public class EditMode extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deck.PreviousCard();
-                top.setText(deck.GetCurrentCardFront());
-                bottom.setText(deck.GetCurrentCardBack());
+                m_Deck.PreviousCard();
+                m_Top.setText(m_Deck.GetCurrentCardFront());
+                m_Bottom.setText(m_Deck.GetCurrentCardBack());
             }
         });
 
@@ -92,11 +96,26 @@ public class EditMode extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deck.NextCard();
-                top.setText(deck.GetCurrentCardFront());
-                bottom.setText(deck.GetCurrentCardBack());
+                m_Deck.NextCard();
+                m_Top.setText(m_Deck.GetCurrentCardFront());
+                m_Bottom.setText(m_Deck.GetCurrentCardBack());
             }
         });
 
+    }
+
+    protected void onResume()
+    {
+        super.onResume();
+
+        m_Top.setText(m_Deck.GetCurrentCardFront());
+        m_Bottom.setText(m_Deck.GetCurrentCardBack());
+    }
+
+    protected void onPause()
+    {
+        super.onPause();
+
+        m_Deck.Reset();
     }
 }

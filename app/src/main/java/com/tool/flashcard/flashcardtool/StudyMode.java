@@ -71,8 +71,10 @@ public class StudyMode extends InputManager
         UpdateCurrentCardIndex();
     }
 
-    protected void OnPause()
+    protected void onPause()
     {
+        super.onPause();
+
         m_CurrentDeck.Reset();
     }
 

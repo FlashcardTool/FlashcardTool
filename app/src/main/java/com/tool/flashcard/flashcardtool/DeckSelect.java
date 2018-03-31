@@ -28,6 +28,7 @@ public class DeckSelect extends AppCompatActivity
         {
             deck.CreateNewCard("Front of card " + Integer.toString(ind), "Back of card " + Integer.toString(ind));
         }
+        deck.Reset();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deck_select);

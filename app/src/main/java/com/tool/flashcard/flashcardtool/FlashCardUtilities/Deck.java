@@ -99,6 +99,7 @@ public class Deck
         Flashcard card = new Flashcard();
         card.SetBothSides(_newFront, _newBack);
         m_Cards.add(card);
+        m_CardsViewed = (m_Cards.size() - 1);
     }
 
     public void DeleteFlashcard()
