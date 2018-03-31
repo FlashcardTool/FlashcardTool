@@ -9,84 +9,53 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
+import com.tool.flashcard.flashcardtool.Utilities.InputManager;
 
-public class StudyMode extends Activity{
+import org.w3c.dom.Text;
 
-    private static final float MIN_DISTANCE = 500.0f;
+public class StudyMode extends InputManager
+{
+    private Deck        m_CurrentDeck;
+    private Boolean     m_FrontOfCard;
 
-    private Deck    m_CurrentDeck;
-    private Boolean m_FrontOfCard;
-
-    private float   m_StartTouhPositionY;
-    private float   m_EndTouchPositionY;
-    private float   m_StartTouhPositionX;
-    private float   m_EndTouchPositionX;
+    private TextView    m_CardQuestion;
+    private TextView    m_DeckName;
+    private TextView    m_CardNumber;
+    private TextView    m_SideOfCard;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_mode);
 
-        ImageButton button = findViewById(R.id.imageButtonFlip);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                FlipCard();
-            }
-        });
-
-        button = findViewById(R.id.imageButton2);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                m_CurrentDeck.NextCard();
-                DisplayCard();
-            }
-        });
-
-        button = findViewById(R.id.imageButton3);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                m_CurrentDeck.PreviousCard();
-                DisplayCard();
-            }
-        });
+        m_CardQuestion = findViewById(R.id.textView2);
+        m_DeckName = findViewById(R.id.textView);
+        m_CardNumber = findViewById(R.id.textView3);
+        m_SideOfCard = findViewById(R.id.textView4);
     }
 
-    public boolean onTouchEvent(MotionEvent event) {
+    final public void OnSwipeRight(float _position)
+    {
+        m_CurrentDeck.PreviousCard();
+        DisplayCard();
+    }
 
-        int action = MotionEventCompat.getActionMasked(event);
+    final public void OnSwipeLeft(float _position)
+    {
+        m_CurrentDeck.NextCard();
+        DisplayCard();
+    }
 
-        switch (action) {
-            case (MotionEvent.ACTION_DOWN):
-                m_StartTouhPositionY = event.getY();
-                m_StartTouhPositionX = event.getX();
-                break;
-            case (MotionEvent.ACTION_UP):
-                m_EndTouchPositionY = event.getY();
-                m_EndTouchPositionX = event.getX();
-                if(Math.abs(m_EndTouchPositionY - m_StartTouhPositionY) > MIN_DISTANCE)
-                {
-                    FlipCard();
-                }
-                else if((m_EndTouchPositionX - m_StartTouhPositionX) > MIN_DISTANCE)
-                {
-                    m_CurrentDeck.PreviousCard();
-                    DisplayCard();
-                }
-                else if(Math.abs(m_EndTouchPositionX - m_StartTouhPositionX) > MIN_DISTANCE)
-                {
-                    m_CurrentDeck.NextCard();
-                    DisplayCard();
-                }
-        }
+    final public void OnSwipeVertical(float _position)
+    {
+        FlipCard();
+    }
 
-        return super.onTouchEvent(event);
+    final public void OnTouch(float _xPosition, float _yPosition)
+    {
+        FlipCard();
     }
 
 
@@ -97,10 +66,14 @@ public class StudyMode extends Activity{
         m_FrontOfCard = true;
         m_CurrentDeck = DeckSelect.Manager.get(DeckSelect.CurrentDeckIndex);
 
-        ((TextView) findViewById(R.id.textView2)).setText(m_CurrentDeck.GetCurrentCardFront());
-        ((TextView) findViewById(R.id.textView)).setText(m_CurrentDeck.GetName());
+        m_CardQuestion.setText(m_CurrentDeck.GetCurrentCardFront());
+        m_DeckName.setText(m_CurrentDeck.GetName());
         UpdateCurrentCardIndex();
+    }
 
+    protected void OnPause()
+    {
+        m_CurrentDeck.Reset();
     }
 
     private void FlipCard()
@@ -109,28 +82,28 @@ public class StudyMode extends Activity{
 
         if(m_FrontOfCard)
         {
-            ((TextView) findViewById(R.id.textView4)).setText("Top");
+            m_SideOfCard.setText("Top");
         }
         else
         {
-            ((TextView) findViewById(R.id.textView4)).setText("Bottom");
+            m_SideOfCard.setText("Bottom");
         }
 
 
-        ((TextView) findViewById(R.id.textView2)).setText(m_CurrentDeck.GetCardString(m_FrontOfCard));
+        m_CardQuestion.setText(m_CurrentDeck.GetCardString(m_FrontOfCard));
     }
 
     private void UpdateCurrentCardIndex()
     {
-        ((TextView) findViewById(R.id.textView3)).setText(m_CurrentDeck.GetCardNumber());
+        m_CardNumber.setText(m_CurrentDeck.GetCardNumber());
     }
 
     private void DisplayCard()
     {
         m_FrontOfCard = true;
 
-        ((TextView) findViewById(R.id.textView4)).setText("Top");
-        ((TextView) findViewById(R.id.textView2)).setText(m_CurrentDeck.GetCurrentCardFront());
+        m_SideOfCard.setText("Top");
+        m_CardQuestion.setText(m_CurrentDeck.GetCurrentCardFront());
         UpdateCurrentCardIndex();
     }
 }
