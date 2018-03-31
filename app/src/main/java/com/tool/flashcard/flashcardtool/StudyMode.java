@@ -30,10 +30,10 @@ public class StudyMode extends InputManager
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_mode);
 
-        m_CardQuestion = findViewById(R.id.textView2);
-        m_DeckName = findViewById(R.id.textView);
-        m_CardNumber = findViewById(R.id.textView3);
-        m_SideOfCard = findViewById(R.id.textView4);
+        m_CardQuestion = findViewById(R.id.cardInformation);
+        m_DeckName = findViewById(R.id.deckName);
+        m_CardNumber = findViewById(R.id.cardNumber);
+        m_SideOfCard = findViewById(R.id.cardSide);
     }
 
     final public void OnSwipeRight(float _position)
