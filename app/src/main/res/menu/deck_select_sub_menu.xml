@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <item android:id="@+id/sub_menu_study"
+        android:title="Study" />
+    <item android:id="@+id/sub_menu_quiz"
+        android:title="Quiz" />
+    <item android:id="@+id/sub_menu_edit"
+        android:title="Edit" />
+    <item android:id="@+id/sub_menu_export"
+        android:title="Export" />
+</menu>

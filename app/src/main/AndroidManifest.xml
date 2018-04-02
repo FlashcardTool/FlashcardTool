@@ -19,7 +19,6 @@
         <activity android:name=".QuizModeQuestion" />
         <activity android:name=".QuizModeAnswer" />
         <activity android:name=".QuizModeAnswerIncorrect" />
-        <activity android:name=".DeckSelectSubMenu" />
         <activity android:name=".DeckSelectDelete" />
         <activity android:name=".DeckSelectNewDeck" />
         <activity android:name=".StudyMode" />
