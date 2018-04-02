@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.tool.flashcard.flashcardtool.DeckSelect">
 
-    <ListView
-        android:id="@+id/mobile_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:entries="@array/Decks_Temp"
-        android:scrollbars="vertical"
-        android:visibility="gone" />
-
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/NewDeckButton"
         android:layout_width="wrap_content"
@@ -31,7 +22,6 @@
         android:id="@+id/DeckList"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
     </android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>

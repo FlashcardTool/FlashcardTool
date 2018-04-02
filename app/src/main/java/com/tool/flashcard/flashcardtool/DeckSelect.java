@@ -31,7 +31,10 @@ public class DeckSelect extends AppCompatActivity
         instance = this;
         Manager = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
+
+        //Load Flashcards Deck
+
+        for (int i = 0; i < 20; i++) {
             Deck deck = new Deck("Test Deck " + i);
             Manager.add(deck);
 
@@ -82,14 +85,9 @@ public class DeckSelect extends AppCompatActivity
     {
         super.onCreateContextMenu(menu, v, menuInfo);
 
-        //menu.setHeaderTitle(DeckSelect.Manager.get(DeckSelect.CurrentDeckIndex).GetName());
-        /*menu.add(0, v.getId(), 0, "Study");
-        menu.add(0, v.getId(), 0, "Quiz");
-        menu.add(0, v.getId(), 0, "Edit");
-        menu.add(0, v.getId(), 0, "Export");*/
-
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.deck_select_sub_menu, menu);
+        menu.setHeaderTitle(DeckSelect.Manager.get(DeckSelect.CurrentDeckIndex).GetName());
     }
 
     @Override
