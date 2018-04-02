@@ -1,5 +1,16 @@
 <resources>
     <string name="app_name">FlashcardTool</string>
+
+    <string name="Top">Top</string>
+    <string name="Bottom">Bottom</string>
+
+    <string name="DefaultQuestion">Who is Abhraham Lincoln?</string>
+    <string name="DefaultAnswer">The 3/5ths compromise</string>
+
+    <string name="Nick">Nick</string>
+    <string name="Stern">Stern</string>
+
+
     <string-array name="Decks_Temp">
         <item>Deck 1</item>
         <item>Deck 2</item>

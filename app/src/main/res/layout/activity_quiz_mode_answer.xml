@@ -29,7 +29,7 @@
             android:layout_width="410dp"
             android:layout_height="100dp"
             android:gravity="center"
-            android:text="Who is Abhraham Lincoln?"
+            android:text="@string/DefaultQuestion"
             android:textColor="#000000"
             android:textSize="20sp" />
 
@@ -43,7 +43,7 @@
                 android:layout_height="205dp"
                 android:layout_marginBottom="102dp"
                 android:gravity="center"
-                android:text="The 3/5ths compromise"
+                android:text="@string/DefaultAnswer"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
