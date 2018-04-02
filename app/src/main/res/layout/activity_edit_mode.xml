@@ -18,7 +18,7 @@
             android:layout_height="0dp"
             android:layout_weight="0.1"
             android:gravity="center"
-            android:text="Top" />
+            android:text="@string/Top" />
 
         <EditText
             android:id="@+id/editModeTopEditText"
@@ -28,7 +28,7 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="textMultiLine"
-            android:text="Who is Abhraham Lincoln?"
+            android:text="@string/DefaultQuestion"
             android:textSize="20pt" />
 
         <TextView
@@ -37,7 +37,7 @@
             android:layout_height="0dp"
             android:layout_weight="0.1"
             android:gravity="center"
-            android:text="Bottom" />
+            android:text="@string/Bottom" />
 
         <EditText
             android:id="@+id/editModeBottomEditText"
@@ -47,7 +47,7 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="textMultiLine"
-            android:text="The 3/5ths compromise"
+            android:text="@string/DefaultAnswer"
             android:textSize="20pt"/>
 
         <android.support.constraint.ConstraintLayout
