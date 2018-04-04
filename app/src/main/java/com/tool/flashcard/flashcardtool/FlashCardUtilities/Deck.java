@@ -16,6 +16,9 @@ public class Deck
     private int             m_CardsViewed;
     private String          m_DeckName;
 
+    //added by James to facilitate loading decks from XML
+    public Deck(){ m_Cards = new ArrayList<>(); }
+
     public Deck(String _name)
     {
         this(_name,"This is the front", "This is the back");
