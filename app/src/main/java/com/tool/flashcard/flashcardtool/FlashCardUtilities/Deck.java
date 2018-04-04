@@ -111,4 +111,9 @@ public class Deck
     {
         return Integer.toString(m_CardsViewed + 1) + "/" + Integer.toString(m_Cards.size());
     }
+
+    //added by James to facilitate saving Decks
+    public List<Flashcard> getAllCards(){
+        return m_Cards;
+    }
 }
