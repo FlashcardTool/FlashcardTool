@@ -2,6 +2,7 @@ package com.tool.flashcard.flashcardtool;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -19,10 +20,15 @@ import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
 import android.view.MenuInflater;
+import android.widget.Button;
 
-public class DeckSelect extends AppCompatActivity
+public class DeckSelect extends AppCompatActivity implements View.OnClickListener
 {
     private static DeckSelect instance;
+
+    private Button buttonAutoMode;
+    private Button buttonDayMode;
+    private Button buttonNightMode;
 
     public static List<Deck> Manager;
     public static int CurrentDeckIndex = 0;
@@ -48,6 +54,11 @@ public class DeckSelect extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deck_select);
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
+        initViews();
+        initListeners();
+
 
         FloatingActionButton fab = findViewById(R.id.NewDeckButton);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -115,5 +126,39 @@ public class DeckSelect extends AppCompatActivity
         }
 
         return true;
+    }
+
+
+    public void onClick(View v)
+    {
+
+        switch (v.getId()) {
+            case R.id.buttonAutoMode:
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
+                break;
+            case R.id.buttonDayMode:
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                break;
+            case R.id.buttonNightMode:
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                break;
+        }
+
+        Intent intent = new Intent(DeckSelect.this, ModeViewActivity.class);
+        startActivity(intent);
+
+    }
+
+    private void initViews() {
+        buttonAutoMode = (Button) findViewById(R.id.buttonAutoMode);
+        buttonDayMode = (Button) findViewById(R.id.buttonDayMode);
+        buttonNightMode = (Button) findViewById(R.id.buttonNightMode);
+
+    }
+
+    private void initListeners() {
+        buttonAutoMode.setOnClickListener(this);
+        buttonDayMode.setOnClickListener(this);
+        buttonNightMode.setOnClickListener(this);
     }
 }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context="com.tool.flashcard.flashcardtool.EditMode">
 
     <LinearLayout
@@ -18,7 +19,8 @@
             android:layout_height="0dp"
             android:layout_weight="0.1"
             android:gravity="center"
-            android:text="@string/Top" />
+            android:text="@string/Top"
+            android:textColor="@color/textColorPrimary"/>
 
         <EditText
             android:id="@+id/editModeTopEditText"
@@ -29,7 +31,8 @@
             android:gravity="center"
             android:inputType="textMultiLine"
             android:text="@string/DefaultQuestion"
-            android:textSize="20pt" />
+            android:textSize="20pt"
+            android:textColor="@color/textColorPrimary"/>
 
         <TextView
             android:id="@+id/editModeBottomTextView"
@@ -37,7 +40,8 @@
             android:layout_height="0dp"
             android:layout_weight="0.1"
             android:gravity="center"
-            android:text="@string/Bottom" />
+            android:text="@string/Bottom"
+            android:textColor="@color/textColorPrimary"/>
 
         <EditText
             android:id="@+id/editModeBottomEditText"
@@ -48,7 +52,8 @@
             android:gravity="center"
             android:inputType="textMultiLine"
             android:text="@string/DefaultAnswer"
-            android:textSize="20pt"/>
+            android:textSize="20pt"
+            android:textColor="@color/textColorPrimary"/>
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
