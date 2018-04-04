@@ -26,18 +26,18 @@ public class XML {
     private static final String CARD_FRONT_ATTRIBUTE = "front";
     private static final String CARD_BACK_ATTRIBUTE = "back";
 
-    public static List<Deck> load(Activity activity){
+    public static List<Deck> load(Context context){
         List<Deck> loadedDecks = new ArrayList<>();
 
         try{
             XmlPullParserFactory xmlFactoryObject = XmlPullParserFactory.newInstance();
             XmlPullParser parser = xmlFactoryObject.newPullParser();
 
-            String path = activity.getApplicationContext().getFilesDir().getPath() + DATA_RELATIVE_FILE_PATH;
+            String path = context.getFilesDir().getPath() + DATA_RELATIVE_FILE_PATH;
             parser.setInput(new FileInputStream(new File(path)), null);
 
             int event = parser.getEventType();
-            Deck deck = new Deck(""); //initial deck is a throw away to stop compiler error
+            Deck deck = null;// = new Deck(); //initial deck is a throw away to stop compiler error
             while(event != XmlPullParser.END_DOCUMENT){
                 String tagName = parser.getName();
 
@@ -47,18 +47,22 @@ public class XML {
                             //start of new deck
                             String deckName = parser.getAttributeValue(null, DECK_NAME_ATTRIBUTE);
                             // TODO: 2018-04-03 put subject attribute here once it's implemented
-                            deck = new Deck(deckName);
+                            deck = new Deck();
+                            deck.SetName(deckName);
 
                         }else if(tagName.equalsIgnoreCase(CARD_TAG)){
                             //new card for current deck
                             String cardFront = parser.getAttributeValue(null, CARD_FRONT_ATTRIBUTE);
                             String cardBack = parser.getAttributeValue(null, CARD_BACK_ATTRIBUTE);
+
+                            // TODO: 4/4/18 check if deck is null, XML malformed exception
                             deck.CreateNewCard(cardFront, cardBack);
                         }
                         break;
                     case XmlPullParser.END_TAG :
                         if(tagName.equalsIgnoreCase(DECK_TAG)){
                             //current deck complete
+                            // TODO: 4/4/18 check if deck is null, XML malformed exception
                             deck.Reset();
                             loadedDecks.add(deck);
                         }
@@ -73,16 +77,20 @@ public class XML {
             System.out.println("data file does not exist");
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (NullPointerException e){
+            e.printStackTrace();
         }
         return loadedDecks;
     }
 
-    public static void save(List<Deck> source, Activity activity){
+    public static void save(List<Deck> source, Context context){
         try{
-            String path = activity.getApplicationContext().getFilesDir().getPath() + DATA_RELATIVE_FILE_PATH;
-            FileOutputStream fos = new FileOutputStream(path); //dunno why this is necessary, but the app crashes without this line
-            FileOutputStream fileos = activity.getApplicationContext().openFileOutput("data", Context.MODE_PRIVATE);
+            // Previously crashed without this bit, seems to work fine now
+            // String path = context.getFilesDir().getPath() + DATA_RELATIVE_FILE_PATH;
+            // FileOutputStream fos = new FileOutputStream(path);
+            FileOutputStream fileos = context.openFileOutput("data", Context.MODE_PRIVATE);
             XmlSerializer xmlSerializer = Xml.newSerializer();
+            xmlSerializer.setFeature("http://xmlpull.org/v1/doc/features.html#indent-output", true);
             StringWriter writer = new StringWriter();
 
             xmlSerializer.setOutput(writer);
