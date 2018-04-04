@@ -50,11 +50,16 @@ public class DeckSelect extends AppCompatActivity
         setContentView(R.layout.activity_deck_select);
 
         FloatingActionButton fab = findViewById(R.id.NewDeckButton);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(DeckSelect.this, DeckSelectNewDeck.class);
-                //startActivity(intent);
+            Deck deck = new Deck("New Deck");
+            Manager.add(deck);
+
+            // Update List
+            RecyclerView deck_list = findViewById(R.id.DeckList);
+            deck_list.getAdapter().notifyItemInserted(Manager.size() - 1);
             }
         });
 
@@ -73,12 +78,8 @@ public class DeckSelect extends AppCompatActivity
         {
             instance.openContextMenu(view);
         }
-        /*String string = deck_id + ": ";
-        string += long_click ? "Long" : "Short";
-        Toast.makeText(instance, string, Toast.LENGTH_SHORT).show();*/
 
-        //Intent intent = new Intent(instance, DeckSelectSubMenu.class);
-        //instance.startActivity(intent);
+
     }
 
     @Override
