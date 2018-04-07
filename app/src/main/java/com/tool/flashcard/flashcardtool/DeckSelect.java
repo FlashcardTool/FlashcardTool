@@ -11,7 +11,6 @@ import android.support.design.widget.FloatingActionButton;
 
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.DeckListAdapter;
-import com.tool.flashcard.flashcardtool.FlashCardUtilities.XML;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +54,7 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deck_select);
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         initViews();
         initListeners();
 
@@ -119,7 +118,7 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
                 startActivity(intent);
                 break;
             case R.id.sub_menu_edit:
-                intent = new Intent(this, EditMode.class);
+                intent = new Intent(this, EditMode_listView.class);
                 startActivity(intent);
                 break;
             case R.id.sub_menu_export:

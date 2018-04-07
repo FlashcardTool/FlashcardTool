@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
 import com.tool.flashcard.flashcardtool.Utilities.InputManager;
 
-public class EditMode extends InputManager {
+public class EditMode_cardView extends InputManager {
 
      private Deck m_Deck;
 
