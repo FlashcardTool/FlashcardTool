@@ -14,6 +14,14 @@
     <string name="text_day_mode">Day Mode</string>
     <string name="text_night_mode">Night Mode</string>
 
+    <string name="action_lists">Test lists</string>
+    <string name="action_board">Test board </string>
+    <string name="action_disable_drag">Disable drag</string>
+    <string name="action_enable_drag">Enable drag</string>
+    <string name="action_list">List (drag on touch image icon)</string>
+    <string name="action_grid_vertical">Grid vertical (drag on long press)</string>
+    <string name="action_grid_horizontal">Grid horizontal (drag on long press)</string>
+	
     <string-array name="Decks_Temp">
         <item>Deck 1</item>
         <item>Deck 2</item>
