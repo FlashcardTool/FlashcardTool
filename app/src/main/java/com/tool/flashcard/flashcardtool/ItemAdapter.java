@@ -17,6 +17,7 @@
 //package com.woxthebox.draglistview.sample;
 package com.tool.flashcard.flashcardtool;
 
+import android.content.Intent;
 import android.support.v4.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,6 @@ import com.woxthebox.draglistview.DragItemAdapter;
 import java.util.ArrayList;
 
 class ItemAdapter extends DragItemAdapter<Pair<Long, String>, ItemAdapter.ViewHolder> {
-
     private int mLayoutId;
     private int mGrabHandleId;
     private boolean mDragOnLongPress;

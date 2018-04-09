@@ -35,6 +35,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
 import com.woxthebox.draglistview.DragItem;
 import com.woxthebox.draglistview.DragListView;
 import com.woxthebox.draglistview.swipe.ListSwipeHelper;
@@ -45,6 +46,7 @@ import java.util.ArrayList;
 public class ListFragment extends Fragment {
 
     private ArrayList<Pair<Long, String>> mItemArray;
+    private Deck m_Deck;
     private DragListView mDragListView;
     private ListSwipeHelper mSwipeHelper;
     private MySwipeRefreshLayout mRefreshLayout;
@@ -52,6 +54,7 @@ public class ListFragment extends Fragment {
     public static ListFragment newInstance() {
         return new ListFragment();
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,8 +85,10 @@ public class ListFragment extends Fragment {
         });
 
         mItemArray = new ArrayList<>();
+        m_Deck.Reset();
         for (int i = 0; i < 40; i++) {
-            mItemArray.add(new Pair<>((long) i, "Item " + i));
+            String item = m_Deck.GetCurrentCardFront();
+            mItemArray.add(new Pair<>((long) i, item));
         }
 
         mRefreshLayout.setScrollingView(mDragListView.getRecyclerView());

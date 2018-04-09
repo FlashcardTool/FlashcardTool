@@ -39,6 +39,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
 import com.woxthebox.draglistview.BoardView;
 import com.woxthebox.draglistview.DragItem;
 import com.woxthebox.draglistview.DragItemAdapter;
@@ -51,6 +52,7 @@ public class BoardFragment extends Fragment {
     private static int sCreatedItems = 0;
     private BoardView mBoardView;
     private int mColumns;
+    private Deck m_Deck;
 
     public static BoardFragment newInstance() {
         return new BoardFragment();
@@ -58,6 +60,8 @@ public class BoardFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        m_Deck = DeckSelect.Manager.get(DeckSelect.CurrentDeckIndex);
+
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
@@ -140,13 +144,13 @@ public class BoardFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Board");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Edit Cards");
 
         addColumnList();
-        addColumnList();
-        addColumnList();
-        addColumnList();
-        addColumnList();
+        //addColumnList();
+        //addColumnList();
+        //addColumnList();
+        //addColumnList();
     }
 
     @Override
@@ -188,16 +192,19 @@ public class BoardFragment extends Fragment {
 
     private void addColumnList() {
         final ArrayList<Pair<Long, String>> mItemArray = new ArrayList<>();
-        int addItems = 15;
-        for (int i = 0; i < addItems; i++) {
+        int addItems = m_Deck.getAllCards().size();
+        m_Deck.Reset();
+        for (int i = 0; i < m_Deck.getAllCards().size(); i++) {
             long id = sCreatedItems++;
-            mItemArray.add(new Pair<>(id, "Item " + id));
+            mItemArray.add(new Pair<>(id, m_Deck.GetCurrentCardFront()));
+            m_Deck.NextCard();
         }
 
         final int column = mColumns;
         final ItemAdapter listAdapter = new ItemAdapter(mItemArray, R.layout.column_item, R.id.item_layout, true);
         final View header = View.inflate(getActivity(), R.layout.column_header, null);
-        ((TextView) header.findViewById(R.id.text)).setText("Column " + (mColumns + 1));
+
+        ((TextView) header.findViewById(R.id.text)).setText(m_Deck.GetName());
         ((TextView) header.findViewById(R.id.item_count)).setText("" + addItems);
         header.setOnClickListener(new View.OnClickListener() {
             @Override
