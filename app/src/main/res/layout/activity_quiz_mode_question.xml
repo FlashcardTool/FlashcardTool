@@ -13,7 +13,7 @@
         >
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textViewDeckName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -22,7 +22,7 @@
             android:textColor="#000000" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textViewQuestion"
             android:layout_width="410dp"
             android:layout_height="100dp"
             android:gravity="center"
@@ -37,25 +37,25 @@
             android:rowCount="2">
 
             <Button
-                android:id="@+id/buttonIncorrect1"
+                android:id="@+id/buttonAnswer1"
                 android:layout_width="205dp"
                 android:layout_height="205dp"
                 android:text="1882" />
 
             <Button
-                android:id="@+id/buttonCorrect"
+                android:id="@+id/buttonAnswer2"
                 android:layout_width="205dp"
                 android:layout_height="205dp"
                 android:text="The 3/5ths compromise" />
 
             <Button
-                android:id="@+id/buttonIncorrect2"
+                android:id="@+id/buttonAnswer3"
                 android:layout_width="205dp"
                 android:layout_height="205dp"
                 android:text="A President" />
 
             <Button
-                android:id="@+id/buttonIncorrect3"
+                android:id="@+id/buttonAnswer4"
                 android:layout_width="205dp"
                 android:layout_height="205dp"
                 android:text="The South" />
@@ -63,7 +63,7 @@
         </GridLayout>
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textViewTimer"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center"
@@ -71,5 +71,126 @@
             android:textSize="40sp"
             android:textColor="#000000" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonRealAnswer"
+        android:layout_width="205dp"
+        android:layout_height="205dp"
+        android:layout_marginBottom="102dp"
+        android:gravity="center"
+        android:text="@string/DefaultAnswer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textViewAnswerCorrect"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148dp"
+        android:gravity="center"
+        android:text="Correct!"
+        android:textColor="#000000"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewSorry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="252dp"
+        android:text="Sorry this was the correct answer"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+    <TextView
+        android:id="@+id/textViewCorrectAnswers"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="132dp"
+        android:gravity="center"
+        android:text="1 correct"
+        android:textColor="#000000"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewAnswersWrong"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="268dp"
+        android:gravity="center"
+        android:text="52 Wrong"
+        android:textColor="#000000"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textViewTrickyGame"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="384dp"
+        android:gravity="center"
+        android:text="Tricky Game"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonDone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="92dp"
+        android:layout_marginEnd="161dp"
+        android:layout_marginStart="161dp"
+        android:text="Done"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonAgain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="140dp"
+        android:layout_marginEnd="157dp"
+        android:layout_marginStart="157dp"
+        android:text="Try Again"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textViewResults"
+        android:layout_width="410dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="Results"
+        android:textColor="#000000"
+        android:textSize="90sp" />
+
 
 </android.support.constraint.ConstraintLayout>
