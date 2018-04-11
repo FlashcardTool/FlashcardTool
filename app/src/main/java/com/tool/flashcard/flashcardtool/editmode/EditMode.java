@@ -1,4 +1,4 @@
-package com.tool.flashcard.flashcardtool;
+package com.tool.flashcard.flashcardtool.editmode;
 
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.tool.flashcard.flashcardtool.DeckSelect;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
+import com.tool.flashcard.flashcardtool.R;
 import com.tool.flashcard.flashcardtool.Utilities.InputManager;
 
 public class EditMode extends InputManager {
