@@ -18,13 +18,20 @@ public class FlashCardFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_flashcard, container, false);
-        TextView mainText = rootView.findViewById(R.id.cardText);
-        mainText.setText(card.GetCardFront());
+        TextView topText = rootView.findViewById(R.id.cardTextTop);
+        final TextView bottomText = rootView.findViewById(R.id.cardTextBottom);
+        topText.setText(card.GetCardFront());
+        //bottomText.setText(card.GetCardBack());
 
-        //TODO add OnTouchListener to reveal back of card
-        //rootView.setOnTouchListener();
+        bottomText.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                bottomText.setText(card.GetCardBack());
+            }
+        });
+
 
         return rootView;
     }
+
 
 }
