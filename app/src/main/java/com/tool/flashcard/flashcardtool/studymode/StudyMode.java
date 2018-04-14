@@ -20,6 +20,7 @@ public class StudyMode extends FragmentActivity
     private TextView    m_DeckName;
     private TextView    m_CardNumber;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -52,6 +53,9 @@ public class StudyMode extends FragmentActivity
 
         //Update the cardNumber textView for the first card
         m_CardNumber.setText("1/" + m_CurrentDeck.getNumberOfCards());
+
+        //remove
+
     }
 
     private class FlashcardPagerAdapter extends FragmentStatePagerAdapter
