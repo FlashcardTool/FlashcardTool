@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.os.Bundle;
 import android.widget.TextView;
 
-
 import com.tool.flashcard.flashcardtool.R;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.Flashcard;
 
