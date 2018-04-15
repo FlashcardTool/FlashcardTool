@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.tool.flashcard.flashcardtool.R;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.Flashcard;
 
+import org.w3c.dom.Text;
+
 public class FlashCardFragment extends Fragment
 {
     public Flashcard card;
@@ -18,9 +20,14 @@ public class FlashCardFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_flashcard, container, false);
+
+        TextView topNumber = rootView.findViewById(R.id.cardNumber);
         TextView topText = rootView.findViewById(R.id.cardTextTop);
         final TextView bottomText = rootView.findViewById(R.id.cardTextBottom);
+
         topText.setText(card.GetCardFront());
+
+
         //bottomText.setText(card.GetCardBack());
 
         bottomText.setOnClickListener(new View.OnClickListener(){
