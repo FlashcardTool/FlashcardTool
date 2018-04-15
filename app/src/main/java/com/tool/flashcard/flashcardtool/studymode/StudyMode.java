@@ -1,6 +1,8 @@
 package com.tool.flashcard.flashcardtool.studymode;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Stack;
 
 import android.os.Bundle;
@@ -34,6 +36,7 @@ public class StudyMode extends FragmentActivity
     private Button remove_button;
     private Button undo_button;
     private Button reset_button;
+    private Button shuffle_button;
 
     private ArrayList<Flashcard> mEntries = new ArrayList<Flashcard>();
     private Stack<Flashcard> mDeletions = new Stack<Flashcard>();
@@ -56,6 +59,7 @@ public class StudyMode extends FragmentActivity
         remove_button = (Button) findViewById(R.id.remove_card);
         undo_button = (Button) findViewById(R.id.undo_remove_card);
         reset_button = (Button) findViewById(R.id.reset_cards);
+        shuffle_button = (Button)findViewById(R.id.shuffle_cards);
         pager = findViewById(R.id.cardViewPager);
 
 
@@ -101,6 +105,13 @@ public class StudyMode extends FragmentActivity
             }
         });
 
+        //shuffle
+        shuffle_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                shuffleAllItems();
+            }
+        });
+
     }
 
     private void initEntries(){
@@ -110,16 +121,23 @@ public class StudyMode extends FragmentActivity
         }
     }
 
+    private void shuffleAllItems(){
+        long seed = System.nanoTime();
+        Collections.shuffle(mEntries);
+
+        deckAdapter.notifyDataSetChanged();
+        pager.setCurrentItem(0);
+    }
+
     private void resetAllItems() {
         initEntries();
+
 
         //m_CardNumber = findViewById(R.id.cardNumber);
         //m_CardNumber.setText(mEntries.size());
 
         deckAdapter.notifyDataSetChanged();
-
-
-
+        pager.setCurrentItem(0);
     }
 
     private void pushDeletedItem() {
@@ -131,6 +149,7 @@ public class StudyMode extends FragmentActivity
         //m_CardNumber.setText(mEntries.size());
 
         deckAdapter.notifyDataSetChanged();
+        pager.setCurrentItem(mEntries.size());
     }
 
     private void removeCurrentItem() {
@@ -138,19 +157,20 @@ public class StudyMode extends FragmentActivity
 
         int position = pager.getCurrentItem();
 
+        //pager.setCurrentItem(pager.getCurrentItem());
 
         mDeletions.push(mEntries.get(pager.getCurrentItem()));
         mEntries.remove(pager.getCurrentItem());
 
-        //pager.beginFakeDrag();
-         //pager.fakeDragBy(100);
-        //pager.endFakeDrag();
-        //m_CardNumber = findViewById(R.id.cardNumber);
-        //m_CardNumber.setText(mEntries.size());
-
         deckAdapter.notifyChangeInPosition(1);
         deckAdapter.notifyDataSetChanged();
-
+/*
+        if(pager.getCurrentItem() != mEntries.size()) {
+            pager.setCurrentItem(pager.getCurrentItem());
+        }else {
+            pager.setCurrentItem(pager.getCurrentItem() -1);
+        }
+        */
     }
 
     private class FlashcardPagerAdapter extends FragmentStatePagerAdapter
