@@ -12,6 +12,7 @@ import android.support.design.widget.FloatingActionButton;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.DeckListAdapter;
 import com.tool.flashcard.flashcardtool.editmode.EditMode;
+import com.tool.flashcard.flashcardtool.editmode.EditModeList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -119,7 +120,7 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
                 startActivity(intent);
                 break;
             case R.id.sub_menu_edit:
-                intent = new Intent(this, EditMode.class);
+                intent = new Intent(this, EditModeList.class);
                 startActivity(intent);
                 break;
             case R.id.sub_menu_export:

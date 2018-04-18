@@ -31,8 +31,6 @@ public class DynamicListView extends ListView
     private final int MOVE_DURATION = 150;
     private final int LINE_THICKNESS = 15;
 
-    //public ArrayList<String> mCheeseList;
-
     private int mLastEventY = -1;
 
     private int mDownY = -1;
@@ -301,6 +299,7 @@ public class DynamicListView extends ListView
 
             //TODO swap elements in adapter
             //swapElements(mCheeseList, originalItem, getPositionForView(switchView));
+            ((StableArrayAdapter)this.getAdapter()).swapItems(originalItem, getPositionForView(switchView));
 
             ((BaseAdapter) getAdapter()).notifyDataSetChanged();
 
