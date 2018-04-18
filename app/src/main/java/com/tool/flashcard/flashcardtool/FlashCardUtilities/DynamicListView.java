@@ -297,8 +297,6 @@ public class DynamicListView extends ListView
                 return;
             }
 
-            //TODO swap elements in adapter
-            //swapElements(mCheeseList, originalItem, getPositionForView(switchView));
             ((StableArrayAdapter)this.getAdapter()).swapItems(originalItem, getPositionForView(switchView));
 
             ((BaseAdapter) getAdapter()).notifyDataSetChanged();

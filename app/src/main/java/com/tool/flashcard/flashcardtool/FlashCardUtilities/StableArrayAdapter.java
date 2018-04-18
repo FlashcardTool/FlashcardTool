@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.tool.flashcard.flashcardtool.DeckSelect;
 import com.tool.flashcard.flashcardtool.R;
 
 import java.util.HashMap;
