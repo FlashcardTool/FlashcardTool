@@ -115,6 +115,23 @@ public class Deck
         return Integer.toString(m_CardsViewed + 1) + "/" + Integer.toString(m_Cards.size());
     }
 
+    //Added basic list functionality
+    public int getNumberOfCards()
+    {
+        return m_Cards.size();
+    }
+    public Flashcard getFlashcard(int index)
+    {
+        if(index < 0 || index >= m_Cards.size())
+        {
+            return null;
+        }
+        return m_Cards.get(index);
+    }
+
+
+
+
     //added by James to facilitate saving Decks
     public List<Flashcard> getAllCards(){
         return m_Cards;

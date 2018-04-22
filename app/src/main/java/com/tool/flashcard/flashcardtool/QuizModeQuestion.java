@@ -1,10 +1,14 @@
 package com.tool.flashcard.flashcardtool;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
@@ -14,15 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class QuizModeQuestion extends AppCompatActivity
+public class QuizModeQuestion extends Fragment
 {
     private Flashcard           m_RandomizedCards[];
     private Random              m_Generator;
     private Deck                m_CurrentDeck;
-
-    //Information Objects
-    private TextView            m_TextViewDeckName;
-    private TextView            m_TextViewTimer;
 
     //Questions and answer objects
     private TextView            m_QuestionText;
@@ -31,279 +31,114 @@ public class QuizModeQuestion extends AppCompatActivity
     private Button              m_ButtonAnswer3;
     private Button              m_ButtonAnswer4;
 
-    //Results objects
-    private Button              m_ButtonCorrectAnswer;
-    private TextView            m_TextViewCorrect;
-    private TextView            m_TextViewSorry;
-
-    //Statistics objects
-    private Button              m_ButtonDone;
-    private Button              m_ButtonTryAgain;
-    private TextView            m_TextViewCorrectAnswers;
-    private TextView            m_TextViewIncorrectAnswers;
-    private TextView            m_TextViewResults;
-    private TextView            m_TextViewTrickyGame;
-
     private int                 m_CurrentFlashcard;
     private int                 m_CorrectAnswer;
 
-    private int                 m_CorrectAnswers;
-
     private List<Integer>       m_UsedAnswers;
 
+
+    private View m_CurrentView;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState);
+        super.onCreateView(inflater, container, savedInstanceState);
+
+
+        m_CurrentView = inflater.inflate(R.layout.activity_quiz_mode_question, container, false);
+
         m_UsedAnswers = new ArrayList<>();
 
-        setContentView(R.layout.activity_quiz_mode_question);
+        m_QuestionText = m_CurrentView.findViewById(R.id.textViewQuestion);
 
-        m_QuestionText = findViewById(R.id.textViewQuestion);
-
-        m_ButtonAnswer1 = findViewById(R.id.buttonAnswer1);
+        m_ButtonAnswer1 = m_CurrentView.findViewById(R.id.buttonAnswer1);
         m_ButtonAnswer1.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                DisplayAnswer(0);
+                QuizMode.instance.CurrentState = QuizMode.QuizModeState.Answer;
+                QuizMode.instance.answeredCorrect = (m_CorrectAnswer == 0);
+                QuizMode.instance.UpdateState();
             }
         });
 
-        m_ButtonAnswer2 = findViewById(R.id.buttonAnswer2);
+        m_ButtonAnswer2 = m_CurrentView.findViewById(R.id.buttonAnswer2);
         m_ButtonAnswer2.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                DisplayAnswer(1);
+                QuizMode.instance.CurrentState = QuizMode.QuizModeState.Answer;
+                QuizMode.instance.answeredCorrect = (m_CorrectAnswer == 1);
+                QuizMode.instance.UpdateState();
             }
         });
 
-        m_ButtonAnswer3 = findViewById(R.id.buttonAnswer3);
+        m_ButtonAnswer3 = m_CurrentView.findViewById(R.id.buttonAnswer3);
         m_ButtonAnswer3.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                DisplayAnswer(2);
+                QuizMode.instance.CurrentState = QuizMode.QuizModeState.Answer;
+                QuizMode.instance.answeredCorrect = (m_CorrectAnswer == 2);
+                QuizMode.instance.UpdateState();
             }
         });
 
-        m_ButtonAnswer4 = findViewById(R.id.buttonAnswer4);
+        m_ButtonAnswer4 = m_CurrentView.findViewById(R.id.buttonAnswer4);
         m_ButtonAnswer4.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                DisplayAnswer(3);
+                QuizMode.instance.CurrentState = QuizMode.QuizModeState.Answer;
+                QuizMode.instance.answeredCorrect = (m_CorrectAnswer == 3);
+                QuizMode.instance.UpdateState();
             }
         });
 
-        m_ButtonCorrectAnswer = findViewById(R.id.buttonRealAnswer);
-        m_ButtonCorrectAnswer.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                m_ButtonCorrectAnswer.setEnabled(false);
-                m_ButtonCorrectAnswer.setVisibility(View.INVISIBLE);
-                m_TextViewCorrect.setEnabled(false);
-                m_TextViewCorrect.setVisibility(View.INVISIBLE);
-                m_TextViewSorry.setEnabled(false);
-                m_TextViewSorry.setVisibility(View.INVISIBLE);
-
-                m_ButtonAnswer1.setEnabled(true);
-                m_ButtonAnswer1.setVisibility(View.VISIBLE);
-                m_ButtonAnswer2.setEnabled(true);
-                m_ButtonAnswer2.setVisibility(View.VISIBLE);
-                m_ButtonAnswer3.setEnabled(true);
-                m_ButtonAnswer3.setVisibility(View.VISIBLE);
-                m_ButtonAnswer4.setEnabled(true);
-                m_ButtonAnswer4.setVisibility(View.VISIBLE);
-
-                if(m_CurrentFlashcard < m_RandomizedCards.length)
-                    ShowNewQuestion();
-                else
-                    DisplayStatistics();
-
-            }
-        });
-
-        m_TextViewDeckName = findViewById(R.id.textViewDeckName);
-
-        m_TextViewTimer = findViewById(R.id.textViewTimer);
-        m_TextViewTimer.setEnabled(false);
-        m_TextViewTimer.setVisibility(View.INVISIBLE);
-
-        m_ButtonCorrectAnswer.setEnabled(false);
-        m_ButtonCorrectAnswer.setVisibility(View.INVISIBLE);
-
-        m_TextViewCorrect = findViewById(R.id.textViewAnswerCorrect);
-        m_TextViewCorrect.setEnabled(false);
-        m_TextViewCorrect.setVisibility(View.INVISIBLE);
-
-        m_TextViewSorry = findViewById((R.id.textViewSorry));
-        m_TextViewSorry.setEnabled(false);
-        m_TextViewSorry.setVisibility(View.INVISIBLE);
-
-
-        ConfigureStatistics();
 
         m_Generator = new Random();
         m_CurrentFlashcard = 0;
+
+        return m_CurrentView;
     }
 
-
-    protected void onResume()
+    public void onStart()
     {
-        super.onResume();
+        super.onStart();
 
         m_CurrentDeck = DeckSelect.Manager.get(DeckSelect.CurrentDeckIndex);
-        m_TextViewDeckName.setText(m_CurrentDeck.GetName());
-
         Reset();
     }
 
-    private  void Reset()
+    public void UpdateDeckName(String _name)
     {
-        m_CorrectAnswers = 0;
+        TextView deckName = m_CurrentView.findViewById(R.id.deckName);
+        deckName.setText(_name);
+    }
+
+    public void Reset()
+    {
         m_CurrentFlashcard = 0;
 
         RandomizeCards();
-        ShowNewQuestion();
     }
 
-    private void ShowNewQuestion()
+    public void ShowNewQuestion()
     {
         m_UsedAnswers.clear();
 
         m_QuestionText.setText(m_RandomizedCards[m_CurrentFlashcard].GetCardFront());
+        QuizMode.instance.currentCard = m_RandomizedCards[m_CurrentFlashcard];
         FillAnswers();
 
         m_CurrentFlashcard++;
-    }
 
-    private void DisplayAnswer(int _answer)
-    {
-        m_ButtonCorrectAnswer.setEnabled(true);
-        m_ButtonCorrectAnswer.setVisibility(View.VISIBLE);
-        m_TextViewCorrect.setEnabled(true);
-        m_TextViewCorrect.setVisibility(View.VISIBLE);
-
-        if(_answer != m_CorrectAnswer)
-        {
-            m_TextViewSorry.setEnabled(true);
-            m_TextViewSorry.setVisibility(View.VISIBLE);
-
-            m_TextViewCorrect.setText("Incorrect!");
-        }
-        else
-        {
-            m_TextViewCorrect.setText("CORRECT!");
-            m_CorrectAnswers++;
-        }
-
-
-        m_ButtonAnswer1.setEnabled(false);
-        m_ButtonAnswer1.setVisibility(View.INVISIBLE);
-        m_ButtonAnswer2.setEnabled(false);
-        m_ButtonAnswer2.setVisibility(View.INVISIBLE);
-        m_ButtonAnswer3.setEnabled(false);
-        m_ButtonAnswer3.setVisibility(View.INVISIBLE);
-        m_ButtonAnswer4.setEnabled(false);
-        m_ButtonAnswer4.setVisibility(View.INVISIBLE);
-    }
-
-    private void ConfigureStatistics()
-    {
-        m_ButtonDone = findViewById(R.id.buttonDone);
-        m_ButtonTryAgain = findViewById(R.id.buttonAgain);
-        m_TextViewCorrectAnswers = findViewById(R.id.textViewCorrectAnswers);
-        m_TextViewIncorrectAnswers = findViewById(R.id.textViewAnswersWrong);
-        m_TextViewResults = findViewById(R.id.textViewResults);
-        m_TextViewTrickyGame = findViewById(R.id.textViewTrickyGame);
-
-        m_ButtonTryAgain.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Reset();
-                HideStatistics();
-            }
-        });
-
-        m_ButtonDone.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Intent intent = new Intent(QuizModeQuestion.this, DeckSelect.class);
-                startActivity(intent);
-            }
-        });
-
-        HideStatistics();
-    }
-
-    private void HideStatistics()
-    {
-        m_ButtonDone.setEnabled(false);
-        m_ButtonDone.setVisibility(View.INVISIBLE);
-        m_ButtonTryAgain.setEnabled(false);
-        m_ButtonTryAgain.setVisibility(View.INVISIBLE);
-        m_TextViewCorrectAnswers.setEnabled(false);
-        m_TextViewCorrectAnswers.setVisibility(View.INVISIBLE);
-        m_TextViewIncorrectAnswers.setEnabled(false);
-        m_TextViewIncorrectAnswers.setVisibility(View.INVISIBLE);
-        m_TextViewResults.setEnabled(false);
-        m_TextViewResults.setVisibility(View.INVISIBLE);
-        m_TextViewTrickyGame.setEnabled(false);
-        m_TextViewTrickyGame.setVisibility(View.INVISIBLE);
-
-        m_QuestionText.setEnabled(true);
-        m_QuestionText.setVisibility(View.VISIBLE);
-        m_ButtonAnswer1.setEnabled(true);
-        m_ButtonAnswer1.setVisibility(View.VISIBLE);
-        m_ButtonAnswer2.setEnabled(true);
-        m_ButtonAnswer2.setVisibility(View.VISIBLE);
-        m_ButtonAnswer3.setEnabled(true);
-        m_ButtonAnswer3.setVisibility(View.VISIBLE);
-        m_ButtonAnswer4.setEnabled(true);
-        m_ButtonAnswer4.setVisibility(View.VISIBLE);
-    }
-
-    private void DisplayStatistics()
-    {
-        m_ButtonDone.setEnabled(true);
-        m_ButtonDone.setVisibility(View.VISIBLE);
-        m_ButtonTryAgain.setEnabled(true);
-        m_ButtonTryAgain.setVisibility(View.VISIBLE);
-        m_TextViewCorrectAnswers.setEnabled(true);
-        m_TextViewCorrectAnswers.setVisibility(View.VISIBLE);
-        m_TextViewCorrectAnswers.setText(Integer.toString(m_CorrectAnswers) + " Correct");
-
-        m_TextViewIncorrectAnswers.setEnabled(true);
-        m_TextViewIncorrectAnswers.setVisibility(View.VISIBLE);
-        m_TextViewIncorrectAnswers.setText(Integer.toString(m_RandomizedCards.length - m_CorrectAnswers) + " Incorrect");
-
-        m_TextViewResults.setEnabled(true);
-        m_TextViewResults.setVisibility(View.VISIBLE);
-        m_TextViewTrickyGame.setEnabled(true);
-        m_TextViewTrickyGame.setVisibility(View.VISIBLE);
-
-        m_QuestionText.setEnabled(false);
-        m_QuestionText.setVisibility(View.INVISIBLE);
-        m_ButtonAnswer1.setEnabled(false);
-        m_ButtonAnswer1.setVisibility(View.INVISIBLE);
-        m_ButtonAnswer2.setEnabled(false);
-        m_ButtonAnswer2.setVisibility(View.INVISIBLE);
-        m_ButtonAnswer3.setEnabled(false);
-        m_ButtonAnswer3.setVisibility(View.INVISIBLE);
-        m_ButtonAnswer4.setEnabled(false);
-        m_ButtonAnswer4.setVisibility(View.INVISIBLE);
+        QuizMode.instance.finishedQuiz = (m_CurrentFlashcard >= m_RandomizedCards.length);
     }
 
     private void RandomizeCards()
@@ -370,8 +205,6 @@ public class QuizModeQuestion extends AppCompatActivity
                 m_ButtonAnswer4.setText(m_RandomizedCards[m_CurrentFlashcard].GetCardBack());
                 break;
         }
-
-        m_ButtonCorrectAnswer.setText(m_RandomizedCards[m_CurrentFlashcard].GetCardBack());
 
     }
 

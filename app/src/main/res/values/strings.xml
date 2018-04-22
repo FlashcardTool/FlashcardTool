@@ -6,6 +6,7 @@
 
     <string name="DefaultQuestion">Who is Abhraham Lincoln?</string>
     <string name="DefaultAnswer">The 3/5ths compromise</string>
+    <string name="RevealAnswer">Reaveal Answer</string>
 
     <string name="Nick">Nick</string>
     <string name="Stern">Stern</string>
