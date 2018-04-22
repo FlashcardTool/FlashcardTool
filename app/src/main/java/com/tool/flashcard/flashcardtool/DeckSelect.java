@@ -12,6 +12,9 @@ import android.support.design.widget.FloatingActionButton;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.DeckListAdapter;
 import com.tool.flashcard.flashcardtool.editmode.EditModeList;
+import com.tool.flashcard.flashcardtool.FlashCardUtilities.XML;
+import com.tool.flashcard.flashcardtool.studymode.StudyMode;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +45,7 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
         if(Manager == null)
         {
             Manager = new ArrayList<>();
-            for (int i = 0; i < 20; i++) {
+            for (int i = 0; i < 5; i++) {
                 Deck deck = new Deck("Test Deck " + i);
                 Manager.add(deck);
 
@@ -115,7 +118,7 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
                 startActivity(intent);
                 break;
             case R.id.sub_menu_quiz:
-                intent = new Intent(this, QuizModeQuestion.class);
+                intent = new Intent(this, QuizMode.class);
                 startActivity(intent);
                 break;
             case R.id.sub_menu_edit:
