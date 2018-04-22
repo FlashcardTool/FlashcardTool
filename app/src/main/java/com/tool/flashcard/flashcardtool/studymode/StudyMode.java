@@ -116,6 +116,7 @@ public class StudyMode extends FragmentActivity
 
     private void initEntries(){
         mEntries.clear();
+        mDeletions.clear();
         for(int i = 0; i < m_CurrentDeck.getNumberOfCards(); i++){
             mEntries.add(m_CurrentDeck.getFlashcard(i));
         }
