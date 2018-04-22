@@ -30,26 +30,28 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
     private Button buttonDayMode;
     private Button buttonNightMode;
 
-    public static List<Deck> Manager;
+    public static List<Deck> Manager = null;
     public static int CurrentDeckIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         instance = this;
-        Manager = new ArrayList<>();
-
-
         //Load Flashcards Deck
 
-        for (int i = 0; i < 20; i++) {
-            Deck deck = new Deck("Test Deck " + i);
-            Manager.add(deck);
+        //Keeps manager from being reloaded and clearing out the old decks
+        if(Manager == null)
+        {
+            Manager = new ArrayList<>();
+            for (int i = 0; i < 20; i++) {
+                Deck deck = new Deck("Test Deck " + i);
+                Manager.add(deck);
 
-            for (int ind = 0; ind < 5; ind++) {
-                deck.CreateNewCard("Front of card " + Integer.toString(ind), "Back of card " + Integer.toString(ind));
+                for (int ind = 0; ind < 5; ind++) {
+                    deck.CreateNewCard("Front of card " + Integer.toString(ind), "Back of card " + Integer.toString(ind));
+                }
+
+                deck.Reset();
             }
-
-            deck.Reset();
         }
 
         super.onCreate(savedInstanceState);
@@ -159,5 +161,20 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
         buttonAutoMode.setOnClickListener(this);
         buttonDayMode.setOnClickListener(this);
         buttonNightMode.setOnClickListener(this);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        //Rebuild list
+        RecyclerView deck_list = findViewById(R.id.DeckList);
+        deck_list.getAdapter().notifyDataSetChanged();
     }
 }

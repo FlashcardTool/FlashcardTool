@@ -1,9 +1,10 @@
 package com.tool.flashcard.flashcardtool.editmode;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
+import android.widget.AdapterView;
 import android.view.View;
 
 import java.util.List;
@@ -44,5 +45,34 @@ public class EditModeList extends AppCompatActivity
             adapter.notifyDataSetChanged();
             }
         });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            // argument position gives the index of item which is clicked
+            public void onItemClick(AdapterView<?> arg0, View v, int position, long arg3)
+            {
+                Deck deck = DeckSelect.Manager.get(DeckSelect.CurrentDeckIndex);
+                deck.setCurrentCard(position);
+                Intent intent = new Intent(EditModeList.this, EditMode.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        //Rebuild list
+        DynamicListView listView =  findViewById(R.id.flashcard_list);
+        StableArrayAdapter adapter = (StableArrayAdapter)listView.getAdapter();
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(this, DeckSelect.class);
+        startActivity(intent);
     }
 }

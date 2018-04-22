@@ -1,19 +1,19 @@
 package com.tool.flashcard.flashcardtool.editmode;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
 
 import com.tool.flashcard.flashcardtool.DeckSelect;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
 import com.tool.flashcard.flashcardtool.R;
-import com.tool.flashcard.flashcardtool.Utilities.InputManager;
 
-public class EditMode extends InputManager {
+public class EditMode extends AppCompatActivity {
 
      private Deck m_Deck;
 
@@ -63,44 +63,26 @@ public class EditMode extends InputManager {
             }
         });
 
-        ImageButton button = (ImageButton) findViewById(R.id.imageButton4);
-        button.setOnClickListener(new View.OnClickListener() {
+
+        FloatingActionButton fab = findViewById(R.id.DeleteFlashcardButton);
+        fab.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                m_Deck.CreateNewCard("Card Front", "Card Back");
-                m_Deck.NextCard();
-                DisplayCard();
+            public void onClick(View view) {
+                Deck deck = DeckSelect.Manager.get(DeckSelect.CurrentDeckIndex);
+                deck.DeleteFlashcard();
+                Intent intent = new Intent(EditMode.this, EditModeList.class);
+                startActivity(intent);
             }
         });
 
-        button = findViewById(R.id.imageButton3);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                m_Deck.DeleteFlashcard();
-                m_Deck.PreviousCard();
-                DisplayCard();
-            }
-        });
+    }
 
-        button = findViewById(R.id.imageButton1);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                m_Deck.PreviousCard();
-                DisplayCard();
-            }
-        });
-
-        button = findViewById(R.id.imageButton2);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                m_Deck.NextCard();
-                DisplayCard();
-            }
-        });
-
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(EditMode.this, EditModeList.class);
+        startActivity(intent);
     }
 
     protected void onResume()
@@ -121,17 +103,5 @@ public class EditMode extends InputManager {
     {
         m_Top.setText(m_Deck.GetCurrentCardFront());
         m_Bottom.setText(m_Deck.GetCurrentCardBack());
-    }
-
-    final public void OnSwipeLeft(float _position)
-    {
-        m_Deck.NextCard();
-        DisplayCard();
-    }
-
-    final public void OnSwipeRight(float _position)
-    {
-        m_Deck.PreviousCard();
-        DisplayCard();
     }
 }

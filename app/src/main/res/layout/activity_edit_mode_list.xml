@@ -10,80 +10,8 @@
         android:id="@+id/flashcard_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBackground" />
-
-    <FrameLayout
-    android:layout_width="335dp"
-    android:layout_height="535dp"
-    android:background="#FFFFFF"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
-
-    <FrameLayout
-        android:layout_width="330dp"
-        android:layout_height="530dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_gravity="center">
-
-        <LinearLayout
-            android:id="@+id/EditMenuLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/editModeTopTextView2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.1"
-                android:gravity="center"
-                android:text="@string/Top"
-                android:textColor="@color/textColorPrimary" />
-
-            <EditText
-                android:id="@+id/editModeTopEditText2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.4"
-                android:ems="10"
-                android:gravity="center"
-                android:inputType="textMultiLine"
-                android:text="@string/DefaultQuestion"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="20pt" />
-
-            <TextView
-                android:id="@+id/editModeBottomTextView2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.1"
-                android:gravity="center"
-                android:text="@string/Bottom"
-                android:textColor="@color/textColorPrimary" />
-
-            <EditText
-                android:id="@+id/editModeBottomEditText2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.4"
-                android:ems="10"
-                android:gravity="center"
-                android:inputType="textMultiLine"
-                android:text="@string/DefaultAnswer"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="20pt" />
-        </LinearLayout>
-
-    </FrameLayout>
-    </FrameLayout>
-
+        android:background="@color/colorBackground"
+        android:visibility="visible" />
 
 
     <android.support.design.widget.FloatingActionButton
@@ -94,6 +22,7 @@
         android:background="@color/colorBackground"
         android:clickable="true"
         android:focusable="true"
+        app:backgroundTint="@color/colorPrimary"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"

@@ -39,6 +39,11 @@ public class Deck
         m_CardsViewed = 0;
     }
 
+    public void setCurrentCard(int i)
+    {
+        m_CardsViewed = i;
+    }
+
     public void Reset()
     {
         m_CardsViewed = 0;

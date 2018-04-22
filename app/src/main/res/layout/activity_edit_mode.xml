@@ -30,7 +30,7 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="textMultiLine"
-            android:text="@string/DefaultQuestion"
+            android:text=""
             android:textSize="20pt"
             android:textColor="@color/textColorPrimary"/>
 
@@ -51,82 +51,24 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="textMultiLine"
-            android:text="@string/DefaultAnswer"
+            android:text=""
             android:textSize="20pt"
             android:textColor="@color/textColorPrimary"/>
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="65dp">
-
-            <ImageButton
-                android:id="@+id/imageButton1"
-                android:layout_width="56dp"
-                android:layout_height="59dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:rotation="90"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.65"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
-                app:srcCompat="@android:drawable/arrow_down_float" />
-
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="56dp"
-                android:layout_height="59dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:rotation="-90"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.9"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
-                app:srcCompat="@android:drawable/arrow_down_float" />
-
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="56dp"
-                android:layout_height="59dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.35"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
-                app:srcCompat="@android:drawable/ic_menu_delete" />
-
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="56dp"
-                android:layout_height="59dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
-                app:srcCompat="@android:drawable/ic_input_add" />
-
-
-        </android.support.constraint.ConstraintLayout>
     </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/DeleteFlashcardButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@color/colorBackground"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
 
 </android.support.constraint.ConstraintLayout>

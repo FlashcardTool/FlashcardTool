@@ -17,6 +17,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/text_day_mode"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.975"
@@ -34,6 +35,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/text_night_mode"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/DeckList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.975"
@@ -49,6 +51,7 @@
         android:background="@color/colorBackground"
         android:clickable="true"
         android:focusable="true"
+        app:backgroundTint="@color/colorPrimary"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -58,9 +61,8 @@
         android:id="@+id/DeckList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBackground"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="243dp"></android.support.v7.widget.RecyclerView>
+        android:background="@color/colorBackground">
+    </android.support.v7.widget.RecyclerView>
 
     <Button
         android:id="@+id/buttonAutoMode"
@@ -71,6 +73,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/text_auto_mode"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/DeckList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
