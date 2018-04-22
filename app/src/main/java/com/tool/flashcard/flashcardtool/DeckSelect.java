@@ -12,6 +12,7 @@ import android.support.design.widget.FloatingActionButton;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.DeckListAdapter;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.XML;
+import com.tool.flashcard.flashcardtool.studymode.StudyMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,7 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deck_select);
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         initViews();
         initListeners();
 

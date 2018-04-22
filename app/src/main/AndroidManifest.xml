@@ -21,7 +21,7 @@
         <activity android:name=".QuizModeAnswerIncorrect" />
         <activity android:name=".DeckSelectDelete" />
         <activity android:name=".DeckSelectNewDeck" />
-        <activity android:name=".StudyMode" />
+        <activity android:name=".studymode.StudyMode" />
         <activity android:name=".EditMode" />
         <activity android:name=".QuizModeStatistics" />
         <activity android:name=".ModeViewActivity"></activity>
