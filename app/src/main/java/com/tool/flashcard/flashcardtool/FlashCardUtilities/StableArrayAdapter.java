@@ -33,6 +33,17 @@ public class StableArrayAdapter<T> extends ArrayAdapter<T>
         }
     }
 
+    public void rebuildMap( List<T> objects)
+    {
+        this.objects = objects;
+
+        mIdMap.clear();
+        for (int i = 0; i < objects.size(); ++i)
+        {
+            mIdMap.put(objects.get(i), i);
+        }
+    }
+
     @Override
     public long getItemId(int position)
     {

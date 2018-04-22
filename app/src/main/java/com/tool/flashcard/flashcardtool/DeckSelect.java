@@ -11,7 +11,6 @@ import android.support.design.widget.FloatingActionButton;
 
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.DeckListAdapter;
-import com.tool.flashcard.flashcardtool.editmode.EditMode;
 import com.tool.flashcard.flashcardtool.editmode.EditModeList;
 
 import java.util.ArrayList;
@@ -56,10 +55,8 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deck_select);
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
         initViews();
         initListeners();
-
 
         FloatingActionButton fab = findViewById(R.id.NewDeckButton);
         fab.setOnClickListener(new View.OnClickListener()

@@ -1,7 +1,11 @@
 package com.tool.flashcard.flashcardtool.editmode;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+
 import java.util.List;
 
 import com.tool.flashcard.flashcardtool.DeckSelect;
@@ -21,10 +25,24 @@ public class EditModeList extends AppCompatActivity
         setContentView(R.layout.activity_edit_mode_list);
 
         Deck deck = DeckSelect.Manager.get(DeckSelect.CurrentDeckIndex);
-        List<Flashcard> flashcards = deck.getAllCards();
+        final List<Flashcard> flashcards = deck.getAllCards();
 
         DynamicListView listView = findViewById(R.id.flashcard_list);
         StableArrayAdapter<Flashcard> adapter = new StableArrayAdapter<>(this, 0, flashcards);
         listView.setAdapter(adapter);
+
+        FloatingActionButton fab = findViewById(R.id.NewFlashcardButton);
+        fab.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+            Deck deck = DeckSelect.Manager.get(DeckSelect.CurrentDeckIndex);
+            deck.CreateNewCard("New Card Front", "New Card Back");
+            DynamicListView listView =  findViewById(R.id.flashcard_list);
+            StableArrayAdapter adapter = (StableArrayAdapter)listView.getAdapter();
+            adapter.rebuildMap(deck.getAllCards());
+            adapter.notifyDataSetChanged();
+            }
+        });
     }
 }
