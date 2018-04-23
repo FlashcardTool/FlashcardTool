@@ -33,7 +33,7 @@ public class DeckListAdapter extends RecyclerView.Adapter<DeckListAdapter.ViewHo
         holder.deck_id = position;
         holder.DeckName.setText(deck.GetName());
         //holder.layout.setBackgroundColor(Color.GRAY);
-        holder.Desc.setText("Stuff that I haven't decided what to do with");
+        holder.Desc.setText("Deck Description Goes Here");
 
         holder.layout.setOnClickListener(new View.OnClickListener()
         {
