@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/chalkboard"
     tools:context="com.tool.flashcard.flashcardtool.editmode.EditModeList">
 
     <com.tool.flashcard.flashcardtool.FlashCardUtilities.DynamicListView
         android:id="@+id/flashcard_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBackground"
         android:visibility="visible" />
 
 

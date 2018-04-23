@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@drawable/chalkboard"
     tools:context="com.tool.flashcard.flashcardtool.editmode.EditMode">
 
     <LinearLayout
@@ -20,7 +20,8 @@
             android:layout_weight="0.1"
             android:gravity="center"
             android:text="@string/Top"
-            android:textColor="@color/textColorPrimary"/>
+            android:textColor="@color/textColorDark" />
+
 
         <EditText
             android:id="@+id/editModeTopEditText"
@@ -32,7 +33,8 @@
             android:inputType="textMultiLine"
             android:text=""
             android:textSize="20pt"
-            android:textColor="@color/textColorPrimary"/>
+            android:background="@drawable/blackcard"
+            android:textColor="@color/textColorDark"/>
 
         <TextView
             android:id="@+id/editModeBottomTextView"
@@ -41,7 +43,7 @@
             android:layout_weight="0.1"
             android:gravity="center"
             android:text="@string/Bottom"
-            android:textColor="@color/textColorPrimary"/>
+            android:textColor="@color/textColorDark"/>
 
         <EditText
             android:id="@+id/editModeBottomEditText"
@@ -53,7 +55,8 @@
             android:inputType="textMultiLine"
             android:text=""
             android:textSize="20pt"
-            android:textColor="@color/textColorPrimary"/>
+            android:background="@drawable/blackcard"
+            android:textColor="@color/textColorDark"/>
 
     </LinearLayout>
 

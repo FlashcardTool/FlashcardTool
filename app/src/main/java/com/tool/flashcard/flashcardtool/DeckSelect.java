@@ -92,8 +92,6 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
         {
             instance.openContextMenu(view);
         }
-
-
     }
 
     @Override

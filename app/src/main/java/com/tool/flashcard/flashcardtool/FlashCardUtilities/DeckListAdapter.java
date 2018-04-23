@@ -1,5 +1,6 @@
 package com.tool.flashcard.flashcardtool.FlashCardUtilities;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,7 @@ public class DeckListAdapter extends RecyclerView.Adapter<DeckListAdapter.ViewHo
 
         holder.deck_id = position;
         holder.DeckName.setText(deck.GetName());
+        //holder.layout.setBackgroundColor(Color.GRAY);
         holder.Desc.setText("Stuff that I haven't decided what to do with");
 
         holder.layout.setOnClickListener(new View.OnClickListener()
