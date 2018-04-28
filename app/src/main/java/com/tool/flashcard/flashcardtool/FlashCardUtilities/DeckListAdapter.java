@@ -21,7 +21,6 @@ public class DeckListAdapter extends RecyclerView.Adapter<DeckListAdapter.ViewHo
     public ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType)
     {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
-
         return new ViewHolder(view);
     }
 
