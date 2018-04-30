@@ -11,6 +11,10 @@ import android.support.design.widget.FloatingActionButton;
 
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.DeckListAdapter;
+import com.tool.flashcard.flashcardtool.FlashCardUtilities.DynamicListView;
+import com.tool.flashcard.flashcardtool.FlashCardUtilities.Flashcard;
+import com.tool.flashcard.flashcardtool.FlashCardUtilities.StableArrayAdapter;
+import com.tool.flashcard.flashcardtool.editmode.EditMode;
 import com.tool.flashcard.flashcardtool.editmode.EditModeList;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.XML;
 import com.tool.flashcard.flashcardtool.studymode.StudyMode;
@@ -23,6 +27,7 @@ import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
 import android.view.MenuInflater;
+import android.widget.AdapterView;
 import android.widget.Button;
 
 public class DeckSelect extends AppCompatActivity implements View.OnClickListener
@@ -72,16 +77,35 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
             Manager.add(deck);
 
             // Update List
-            RecyclerView deck_list = findViewById(R.id.DeckList);
-            deck_list.getAdapter().notifyItemInserted(Manager.size() - 1);
+            //RecyclerView deck_list = findViewById(R.id.DeckList);
+            //deck_list.getAdapter().notifyItemInserted(Manager.size() - 1);
+            DynamicListView listView =  findViewById(R.id.DeckList);
+            StableArrayAdapter adapter = (StableArrayAdapter)listView.getAdapter();
+            adapter.rebuildMap(Manager);
+            adapter.notifyDataSetChanged();
             }
         });
 
-        RecyclerView deck_list = findViewById(R.id.DeckList);
-        deck_list.setLayoutManager(new LinearLayoutManager(this));
-        deck_list.setAdapter(new DeckListAdapter());
+        //RecyclerView deck_list = findViewById(R.id.DeckList);
+        //deck_list.setLayoutManager(new LinearLayoutManager(this));
+        //deck_list.setAdapter(new DeckListAdapter());
 
-        registerForContextMenu(deck_list);
+        DynamicListView listView = findViewById(R.id.DeckList);
+        StableArrayAdapter<Deck> adapter = new StableArrayAdapter<>(this, 0, Manager);
+        listView.setAdapter(adapter);
+
+
+        registerForContextMenu(listView);
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            // argument position gives the index of item which is clicked
+            public void onItemClick(AdapterView<?> arg0, View v, int position, long arg3)
+            {
+                instance.onItemClick(v, position, false);
+            }
+        });
     }
 
     public static void onItemClick(View view, int deck_id, boolean long_click)
@@ -175,7 +199,9 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
     {
         super.onResume();
         //Rebuild list
-        RecyclerView deck_list = findViewById(R.id.DeckList);
-        deck_list.getAdapter().notifyDataSetChanged();
+        DynamicListView listView =  findViewById(R.id.DeckList);
+        StableArrayAdapter adapter = (StableArrayAdapter)listView.getAdapter();
+        adapter.rebuildMap(Manager);
+        adapter.notifyDataSetChanged();
     }
 }
