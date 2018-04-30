@@ -62,7 +62,7 @@ public class StableArrayAdapter<T> extends ArrayAdapter<T>
         Object item = this.objects.get(position);
         if(item instanceof Flashcard)
         {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_flashcard, parent, false);
 
             TextView DeckName = view.findViewById(R.id.textViewDeckName);
             TextView Desc = view.findViewById(R.id.textViewDesc);
