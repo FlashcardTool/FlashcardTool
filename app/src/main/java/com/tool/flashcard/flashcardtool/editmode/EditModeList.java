@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.AdapterView;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -31,6 +32,10 @@ public class EditModeList extends AppCompatActivity
         DynamicListView listView = findViewById(R.id.flashcard_list);
         StableArrayAdapter<Flashcard> adapter = new StableArrayAdapter<>(this, 0, flashcards);
         listView.setAdapter(adapter);
+
+        TextView title = findViewById(R.id.DeckTitle);
+        title.setText(deck.GetName());
+
 
         FloatingActionButton fab = findViewById(R.id.NewFlashcardButton);
         fab.setOnClickListener(new View.OnClickListener()
