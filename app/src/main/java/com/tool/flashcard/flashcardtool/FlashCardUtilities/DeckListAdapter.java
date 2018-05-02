@@ -39,7 +39,7 @@ public class DeckListAdapter extends RecyclerView.Adapter<DeckListAdapter.ViewHo
             @Override
             public void onClick(View v)
             {
-                DeckSelect.onItemClick(v, holder.deck_id, false);
+                //DeckSelect.onItemClick(v, holder.deck_id, false);
             }
         });
 
@@ -48,7 +48,7 @@ public class DeckListAdapter extends RecyclerView.Adapter<DeckListAdapter.ViewHo
             @Override
             public boolean onLongClick(View v)
             {
-                DeckSelect.onItemClick(v, holder.deck_id, true);
+                //DeckSelect.onItemClick(v, holder.deck_id, true);
                 return true;
             }
         });

@@ -74,6 +74,20 @@ public class StableArrayAdapter<T> extends ArrayAdapter<T>
 
             return view;
         }
+        else if(item instanceof Deck)
+        {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
+
+            TextView DeckName = view.findViewById(R.id.textViewDeckName);
+            TextView Desc = view.findViewById(R.id.textViewDesc);
+
+            Deck deck = (Deck)item;
+
+            DeckName.setText(deck.GetName());
+            Desc.setText("Number Of Cards: " + deck.getNumberOfCards());
+
+            return view;
+        }
 
         return super.getView(position, convertView, parent);
     }
