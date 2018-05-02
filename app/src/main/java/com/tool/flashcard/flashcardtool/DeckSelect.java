@@ -41,6 +41,8 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
     public static List<Deck> Manager = null;
     public static int CurrentDeckIndex = 0;
 
+    private DynamicListView listView = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         instance = this;
@@ -77,8 +79,6 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
             Manager.add(deck);
 
             // Update List
-            //RecyclerView deck_list = findViewById(R.id.DeckList);
-            //deck_list.getAdapter().notifyItemInserted(Manager.size() - 1);
             DynamicListView listView =  findViewById(R.id.DeckList);
             StableArrayAdapter adapter = (StableArrayAdapter)listView.getAdapter();
             adapter.rebuildMap(Manager);
@@ -86,17 +86,11 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
             }
         });
 
-        //RecyclerView deck_list = findViewById(R.id.DeckList);
-        //deck_list.setLayoutManager(new LinearLayoutManager(this));
-        //deck_list.setAdapter(new DeckListAdapter());
-
-        DynamicListView listView = findViewById(R.id.DeckList);
+        listView = findViewById(R.id.DeckList);
         StableArrayAdapter<Deck> adapter = new StableArrayAdapter<>(this, 0, Manager);
         listView.setAdapter(adapter);
 
-
         registerForContextMenu(listView);
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
@@ -108,13 +102,13 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
         });
     }
 
-    public static void onItemClick(View view, int deck_id, boolean long_click)
+    public void onItemClick(View view, int deck_id, boolean long_click)
     {
         DeckSelect.CurrentDeckIndex = deck_id;
 
         if(!long_click)
         {
-            instance.openContextMenu(view);
+            openContextMenu(listView);
         }
     }
 
