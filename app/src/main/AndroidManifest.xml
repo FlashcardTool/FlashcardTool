@@ -16,14 +16,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".QuizMode" />
-        <activity android:name=".QuizModeAnswerIncorrect" />
-        <activity android:name=".DeckSelectDelete" />
-        <activity android:name=".DeckSelectNewDeck" />
-        <activity android:name=".editmode.EditMode" />
-        <activity android:name=".studymode.StudyMode" />
-        <activity android:name=".ModeViewActivity" />
-        <activity android:name=".editmode.EditModeList"></activity>
+
+        <activity android:name=".editmode.EditModeList"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".QuizMode"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".QuizModeAnswerIncorrect"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".DeckSelectDelete"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".DeckSelectNewDeck"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".editmode.EditMode"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".studymode.StudyMode"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ModeViewActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
