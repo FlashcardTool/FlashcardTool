@@ -102,6 +102,11 @@ public class Deck
         m_Cards.get(m_CardsViewed).SetBothSides(_newFront, _newBack);
     }
 
+    public void UpdateDeckName(String _newDeckName)
+    {
+        m_DeckName = _newDeckName;
+    }
+
     public void CreateNewCard(String _newFront, String _newBack)
     {
         Flashcard card = new Flashcard();
