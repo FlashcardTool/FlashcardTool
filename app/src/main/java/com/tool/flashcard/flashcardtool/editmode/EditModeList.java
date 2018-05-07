@@ -18,6 +18,7 @@ import com.tool.flashcard.flashcardtool.FlashCardUtilities.DynamicListView;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.Flashcard;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.StableArrayAdapter;
+import com.tool.flashcard.flashcardtool.FlashCardUtilities.XML;
 import com.tool.flashcard.flashcardtool.R;
 
 public class EditModeList extends AppCompatActivity
@@ -68,6 +69,8 @@ public class EditModeList extends AppCompatActivity
             public void onClick(View view) {
             Deck deck = DeckSelect.Manager.get(DeckSelect.CurrentDeckIndex);
             deck.CreateNewCard("New Card Front", "New Card Back");
+                XML.save(DeckSelect.Manager, getApplicationContext());
+
             DynamicListView listView =  findViewById(R.id.flashcard_list);
             StableArrayAdapter adapter = (StableArrayAdapter)listView.getAdapter();
             adapter.rebuildMap(deck.getAllCards());

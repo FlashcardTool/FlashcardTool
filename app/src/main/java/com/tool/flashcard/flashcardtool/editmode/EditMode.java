@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import com.tool.flashcard.flashcardtool.DeckSelect;
 import com.tool.flashcard.flashcardtool.FlashCardUtilities.Deck;
+import com.tool.flashcard.flashcardtool.FlashCardUtilities.XML;
 import com.tool.flashcard.flashcardtool.R;
 
 public class EditMode extends AppCompatActivity {
@@ -71,6 +72,8 @@ public class EditMode extends AppCompatActivity {
             public void onClick(View view) {
                 Deck deck = DeckSelect.Manager.get(DeckSelect.CurrentDeckIndex);
                 deck.DeleteFlashcard();
+                XML.save(DeckSelect.Manager, getApplicationContext());
+
                 Intent intent = new Intent(EditMode.this, EditModeList.class);
                 startActivity(intent);
             }
@@ -81,6 +84,7 @@ public class EditMode extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
+        XML.save(DeckSelect.Manager, getApplicationContext());
         Intent intent = new Intent(EditMode.this, EditModeList.class);
         startActivity(intent);
     }
