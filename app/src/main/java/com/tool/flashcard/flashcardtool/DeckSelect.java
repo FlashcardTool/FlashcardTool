@@ -51,16 +51,20 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
         //Keeps manager from being reloaded and clearing out the old decks
         if(Manager == null)
         {
-            Manager = new ArrayList<>();
-            for (int i = 0; i < 5; i++) {
-                Deck deck = new Deck("Test Deck " + i);
-                Manager.add(deck);
+            Manager = XML.load(getApplicationContext());
 
-                for (int ind = 0; ind < 5; ind++) {
-                    deck.CreateNewCard("Front of card " + Integer.toString(ind), "Back of card " + Integer.toString(ind));
+            //if nothing was loaded, generate generic deck
+            if(Manager.size() == 0) {
+                for (int i = 0; i < 5; i++) {
+                    Deck deck = new Deck("Test Deck " + i);
+                    Manager.add(deck);
+
+                    for (int ind = 0; ind < 5; ind++) {
+                        deck.CreateNewCard("Front of card " + Integer.toString(ind), "Back of card " + Integer.toString(ind));
+                    }
+
+                    deck.Reset();
                 }
-
-                deck.Reset();
             }
         }
 

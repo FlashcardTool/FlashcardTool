@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.tool.flashcard.flashcardtool.DeckSelect;
 import com.tool.flashcard.flashcardtool.R;
 
 import java.util.HashMap;
@@ -100,6 +101,8 @@ public class StableArrayAdapter<T> extends ArrayAdapter<T>
 
     public void swapItems(int index1, int index2)
     {
+        XML.save(DeckSelect.Manager, this.getContext());
+
         T temp = objects.get(index1);
         objects.set(index1, objects.get(index2));
         objects.set(index2, temp);
