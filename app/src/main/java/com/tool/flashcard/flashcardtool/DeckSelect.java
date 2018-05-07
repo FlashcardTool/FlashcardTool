@@ -29,6 +29,7 @@ import android.view.MenuItem;
 import android.view.MenuInflater;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 
 public class DeckSelect extends AppCompatActivity implements View.OnClickListener
 {
@@ -69,6 +70,8 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
 
         initViews();
         initListeners();
+
+        //final CheckBox checkbox = (CheckBox) findViewById(R.id.checkBox);
 
         FloatingActionButton fab = findViewById(R.id.NewDeckButton);
         fab.setOnClickListener(new View.OnClickListener()
@@ -140,6 +143,14 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
             case R.id.sub_menu_edit:
                 intent = new Intent(this, EditModeList.class);
                 startActivity(intent);
+                break;
+            case R.id.delete:
+                Manager.remove(0);
+
+                DynamicListView listView =  findViewById(R.id.DeckList);
+                StableArrayAdapter adapter = (StableArrayAdapter)listView.getAdapter();
+                adapter.rebuildMap(Manager);
+                adapter.notifyDataSetChanged();
                 break;
             case R.id.sub_menu_export:
                 break;

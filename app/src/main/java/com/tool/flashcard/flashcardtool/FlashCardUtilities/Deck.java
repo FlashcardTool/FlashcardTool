@@ -139,9 +139,6 @@ public class Deck
         return m_Cards.get(index);
     }
 
-
-
-
     //added by James to facilitate saving Decks
     public List<Flashcard> getAllCards(){
         return m_Cards;
