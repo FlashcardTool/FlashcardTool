@@ -101,10 +101,11 @@ public class StableArrayAdapter<T> extends ArrayAdapter<T>
 
     public void swapItems(int index1, int index2)
     {
-        XML.save(DeckSelect.Manager, this.getContext());
 
         T temp = objects.get(index1);
         objects.set(index1, objects.get(index2));
         objects.set(index2, temp);
+
+        XML.save(DeckSelect.Manager, this.getContext());
     }
 }

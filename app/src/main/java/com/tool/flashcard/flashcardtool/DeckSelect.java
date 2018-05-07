@@ -53,20 +53,6 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
         if(Manager == null)
         {
             Manager = XML.load(getApplicationContext());
-
-            //if nothing was loaded, generate generic deck
-            if(Manager.size() == 0) {
-                for (int i = 0; i < 5; i++) {
-                    Deck deck = new Deck("Test Deck " + i);
-                    Manager.add(deck);
-
-                    for (int ind = 0; ind < 5; ind++) {
-                        deck.CreateNewCard("Front of card " + Integer.toString(ind), "Back of card " + Integer.toString(ind));
-                    }
-
-                    deck.Reset();
-                }
-            }
         }
 
         super.onCreate(savedInstanceState);
@@ -90,6 +76,8 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
             StableArrayAdapter adapter = (StableArrayAdapter)listView.getAdapter();
             adapter.rebuildMap(Manager);
             adapter.notifyDataSetChanged();
+
+            XML.save(DeckSelect.Manager, DeckSelect.instance.getApplicationContext());
             }
         });
 
@@ -149,14 +137,14 @@ public class DeckSelect extends AppCompatActivity implements View.OnClickListene
                 startActivity(intent);
                 break;
             case R.id.delete:
-                Manager.remove(0);
+                Manager.remove(DeckSelect.CurrentDeckIndex);
 
                 DynamicListView listView =  findViewById(R.id.DeckList);
                 StableArrayAdapter adapter = (StableArrayAdapter)listView.getAdapter();
                 adapter.rebuildMap(Manager);
                 adapter.notifyDataSetChanged();
-                break;
-            case R.id.sub_menu_export:
+
+                XML.save(DeckSelect.Manager, DeckSelect.instance.getApplicationContext());
                 break;
         }
 
