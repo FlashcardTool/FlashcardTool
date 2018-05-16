@@ -139,6 +139,10 @@ public class StudyMode extends FragmentActivity
 
         deckAdapter.notifyDataSetChanged();
         pager.setCurrentItem(0);
+
+
+        int position = pager.getCurrentItem();
+        m_CardNumber.setText((position + 1) + "/" + mEntries.size());
     }
 
     private void pushDeletedItem() {
@@ -165,6 +169,9 @@ public class StudyMode extends FragmentActivity
 
         deckAdapter.notifyChangeInPosition(1);
         deckAdapter.notifyDataSetChanged();
+
+        position = pager.getCurrentItem();
+        m_CardNumber.setText((position + 1) + "/" + mEntries.size());
 /*
         if(pager.getCurrentItem() != mEntries.size()) {
             pager.setCurrentItem(pager.getCurrentItem());

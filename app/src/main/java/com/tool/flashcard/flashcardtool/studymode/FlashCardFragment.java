@@ -1,6 +1,7 @@
 package com.tool.flashcard.flashcardtool.studymode;
 
 import android.support.v4.app.Fragment;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
@@ -26,13 +27,14 @@ public class FlashCardFragment extends Fragment
         final TextView bottomText = rootView.findViewById(R.id.cardTextBottom);
 
         topText.setText(card.GetCardFront());
-
+        topText.setMovementMethod(new ScrollingMovementMethod());
 
         //bottomText.setText(card.GetCardBack());
 
         bottomText.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 bottomText.setText(card.GetCardBack());
+                bottomText.setMovementMethod(new ScrollingMovementMethod());
             }
         });
 
