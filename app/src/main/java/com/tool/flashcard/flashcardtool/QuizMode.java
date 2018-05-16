@@ -29,6 +29,7 @@ public class QuizMode extends AppCompatActivity
     private QuizModeStatistics  m_Statistics;
     private QuizModeQuestion    m_Question;
     private QuizModeAnswer      m_Answer;
+    private QuizModeError       m_Error;
 
     public QuizModeState        CurrentState;
 
@@ -51,12 +52,22 @@ public class QuizMode extends AppCompatActivity
 
         m_FragMan = getFragmentManager();
 
-        m_Statistics = new QuizModeStatistics();
-        m_Question = new QuizModeQuestion();
-        m_Answer = new QuizModeAnswer();
-        LoadFragment(m_Statistics);
-        LoadFragment(m_Question);
-        LoadFragment(m_Answer);
+        if (DeckSelect.Manager.get(DeckSelect.CurrentDeckIndex).getNumberOfCards() >= 4)
+        {
+            m_Statistics = new QuizModeStatistics();
+            m_Question = new QuizModeQuestion();
+            m_Answer = new QuizModeAnswer();
+            LoadFragment(m_Statistics);
+            LoadFragment(m_Question);
+            LoadFragment(m_Answer);
+        }
+        else
+        {
+            m_Error = new QuizModeError();
+            LoadFragment(m_Error);
+        }
+
+
 
         m_Timer = findViewById(R.id.timer);
     }
@@ -68,9 +79,12 @@ public class QuizMode extends AppCompatActivity
         CurrentState = QuizModeState.Question;
         UpdateState();
 
-        UpdateDeckName();
+        if(m_Error == null)
+        {
+            UpdateDeckName();
 
-        m_Timer.start();
+            m_Timer.start();
+        }
     }
 
     private void UpdateDeckName()
@@ -104,6 +118,12 @@ public class QuizMode extends AppCompatActivity
 
     public void UpdateState()
     {
+        if (m_Error != null && CurrentState != QuizModeState.Exit)
+        {
+            ShowFragment(m_Error);
+            return;
+        }
+
 
         switch (CurrentState)
         {
